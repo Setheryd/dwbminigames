@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --dwb-primary: #ff6b6b;
+  --dwb-secondary: #4ecdc4;
+  --dwb-accent: #45b7d1;
+  --dwb-dark: #2c3e50;
+  --dwb-light: #ecf0f1;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+/* Retro gaming styles */
+.retro-border {
+  border: 3px solid var(--dwb-primary);
+  box-shadow: 
+    0 0 0 3px var(--dwb-secondary),
+    0 0 0 6px var(--dwb-accent),
+    inset 0 0 20px rgba(255, 107, 107, 0.1);
+}
+
+.game-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.game-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+}
+
+/* Pixel art style button */
+.pixel-button {
+  background: linear-gradient(45deg, var(--dwb-primary), var(--dwb-secondary));
+  border: 3px solid var(--dwb-dark);
+  box-shadow: 
+    3px 3px 0 var(--dwb-dark),
+    inset 2px 2px 0 rgba(255, 255, 255, 0.3);
+  transition: all 0.1s ease;
+}
+
+.pixel-button:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 
+    5px 5px 0 var(--dwb-dark),
+    inset 2px 2px 0 rgba(255, 255, 255, 0.3);
+}
+
+.pixel-button:active {
+  transform: translate(0, 0);
+  box-shadow: 
+    2px 2px 0 var(--dwb-dark),
+    inset 2px 2px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Game canvas styles */
+.game-canvas {
+  border: 4px solid var(--dwb-primary);
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+}
+
+/* Leaderboard styles */
+.leaderboard {
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid var(--dwb-secondary);
+  border-radius: 8px;
+}
+
+.leaderboard-row {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background-color 0.2s ease;
+}
+
+.leaderboard-row:hover {
+  background-color: rgba(255, 107, 107, 0.1);
+}
