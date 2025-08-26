@@ -7,6 +7,7 @@ import { Header } from '@/components/Header';
 import Sidebar from '@/components/Sidebar';
 import GameCard from '@/components/GameCard';
 import GameCarousel from '@/components/GameCarousel';
+import GameGrid from '@/components/GameGrid';
 import { useSidebar } from '@/contexts/SidebarContext';
 import { 
   getPopularGames, 
@@ -52,7 +53,7 @@ export default function Home() {
         <Icon className="icon" size={24} />
         <h2>{title}</h2>
       </motion.div>
-      <GameCarousel games={games} showLabels={true} />
+      <GameGrid games={games} showLabels={true} maxItems={12} />
     </section>
   );
 
@@ -125,7 +126,7 @@ export default function Home() {
               />
             )}
 
-            {/* All Games Carousel */}
+            {/* All Games Grid */}
             <section className="mb-8">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -135,7 +136,7 @@ export default function Home() {
                 <h2>All Games</h2>
                 <span className="text-muted-foreground">({allGames.length} games)</span>
               </motion.div>
-              <GameCarousel games={allGames.slice(0, 20)} showLabels={true} />
+              <GameGrid games={allGames} showLabels={true} maxItems={24} />
             </section>
           </div>
         </main>
