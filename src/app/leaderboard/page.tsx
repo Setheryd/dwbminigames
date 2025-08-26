@@ -102,7 +102,7 @@ export default function Leaderboard() {
             <label className="text-white text-sm mb-2 font-bold">Time Period</label>
             <select 
               value={timeFilter}
-              onChange={(e) => setTimeFilter(e.target.value as any)}
+                             onChange={(e) => setTimeFilter(e.target.value as 'all' | 'today' | 'week' | 'month')}
               className="pixel-button px-4 py-2 text-white font-bold rounded-none bg-transparent border-2"
             >
               <option value="all">All Time</option>

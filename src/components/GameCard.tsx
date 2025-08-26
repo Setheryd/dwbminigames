@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Play, Clock, Star } from 'lucide-react';
 import { Game } from '@/types/game';
+import Image from 'next/image';
 
 interface GameCardProps {
   game: Game;
@@ -36,6 +37,10 @@ export default function GameCard({ game, onClick, index }: GameCardProps) {
         return 'bg-green-500';
       case 'Racing':
         return 'bg-orange-500';
+      case 'Adventure':
+        return 'bg-indigo-500';
+      case 'Horror':
+        return 'bg-gray-700';
       default:
         return 'bg-gray-500';
     }
@@ -46,7 +51,7 @@ export default function GameCard({ game, onClick, index }: GameCardProps) {
       initial={{ scale: 0.8, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{ delay: 0.1 * index }}
-      className={`game-card rounded-lg p-4 cursor-pointer ${
+      className={`game-card ${
         !game.isAvailable ? 'opacity-50' : ''
       }`}
       onClick={() => game.isAvailable && onClick(game.id)}
@@ -54,9 +59,14 @@ export default function GameCard({ game, onClick, index }: GameCardProps) {
       whileTap={game.isAvailable ? { scale: 0.95 } : {}}
     >
       {/* Game Thumbnail */}
-      <div className="bg-gray-800 rounded-lg h-32 mb-4 flex items-center justify-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-600 to-pink-600 opacity-20"></div>
-        <span className="text-gray-400 text-sm relative z-10">Game Thumbnail</span>
+      <div className="relative bg-muted rounded-lg h-32 mb-4 overflow-hidden">
+        <Image 
+          src={game.thumbnail} 
+          alt={game.title}
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw"
+        />
         
         {/* Coming Soon Badge */}
         {!game.isAvailable && (
@@ -64,23 +74,31 @@ export default function GameCard({ game, onClick, index }: GameCardProps) {
             Coming Soon
           </div>
         )}
+
+        {/* Play Button Overlay */}
+        <div className="absolute inset-0 bg-black/50 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center">
+          <button className="pixel-button">
+            <Play className="inline mr-2" />
+            Play Now
+          </button>
+        </div>
       </div>
       
       {/* Game Title */}
-      <h3 className="text-xl font-bold text-white mb-2">{game.title}</h3>
+      <h3 className="text-lg font-bold mb-2 line-clamp-1">{game.title}</h3>
       
       {/* Game Description */}
-      <p className="text-gray-300 text-sm mb-3 line-clamp-2">{game.description}</p>
+      <p className="text-muted-foreground text-sm mb-3 line-clamp-2">{game.description}</p>
       
       {/* Game Meta Info */}
       <div className="flex flex-wrap gap-2 mb-3">
-        <span className={`px-2 py-1 rounded text-xs font-bold ${getDifficultyColor(game.difficulty)}`}>
+        <span className={`px-2 py-1 rounded text-xs font-bold text-white ${getDifficultyColor(game.difficulty)}`}>
           {game.difficulty}
         </span>
-        <span className={`px-2 py-1 rounded text-xs font-bold ${getCategoryColor(game.category)}`}>
+        <span className={`px-2 py-1 rounded text-xs font-bold text-white ${getCategoryColor(game.category)}`}>
           {game.category}
         </span>
-        <span className="px-2 py-1 rounded text-xs font-bold bg-gray-600 flex items-center gap-1">
+        <span className="px-2 py-1 rounded text-xs font-bold bg-muted text-muted-foreground flex items-center gap-1">
           <Clock className="w-3 h-3" />
           {game.estimatedPlayTime}
         </span>
@@ -88,7 +106,7 @@ export default function GameCard({ game, onClick, index }: GameCardProps) {
       
       {/* High Score */}
       <div className="flex justify-between items-center mb-3">
-        <span className="text-gray-400 text-sm flex items-center gap-1">
+        <span className="text-muted-foreground text-sm flex items-center gap-1">
           <Star className="w-4 h-4 text-yellow-400" />
           High Score: {game.highScore.toLocaleString()}
         </span>
@@ -96,7 +114,7 @@ export default function GameCard({ game, onClick, index }: GameCardProps) {
       
       {/* Play Button */}
       <button 
-        className={`w-full pixel-button py-2 text-white font-bold rounded-none ${
+        className={`w-full pixel-button py-2 text-white font-bold rounded ${
           !game.isAvailable ? 'opacity-50 cursor-not-allowed' : ''
         }`}
         disabled={!game.isAvailable}

@@ -1,13 +1,17 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Nunito } from "next/font/google";
 import "./globals.css";
+import { SidebarProvider } from "@/contexts/SidebarContext";
 
-const inter = Inter({ subsets: ["latin"] });
+const nunito = Nunito({ 
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-nunito"
+});
 
 export const metadata: Metadata = {
-  title: "DWB Mini Games - DickWifButt Gaming Community",
-  description: "A collection of mini-games themed around the DWB cryptocurrency. Play Flappy Bird, Kitty Cannon, and more with your favorite DickWifButt character!",
-  keywords: "DWB, DickWifButt, mini-games, crypto games, blockchain gaming",
+  title: "DWB Mini Games",
+  description: "A collection of mini-games similar to CrazyGames",
 };
 
 export default function RootLayout({
@@ -16,9 +20,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} bg-gradient-to-br from-purple-900 via-pink-900 to-orange-900 min-h-screen`}>
-        {children}
+    <html lang="en" className="dark">
+      <body className={`${nunito.variable} font-sans antialiased`}>
+        <SidebarProvider>
+          {children}
+        </SidebarProvider>
       </body>
     </html>
   );

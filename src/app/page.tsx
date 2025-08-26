@@ -2,88 +2,140 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Play, Trophy, Settings, Home } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { Header } from '@/components/Header';
+import Sidebar from '@/components/Sidebar';
 import GameCard from '@/components/GameCard';
-import { games } from '@/lib/games';
+import GameCarousel from '@/components/GameCarousel';
+import { useSidebar } from '@/contexts/SidebarContext';
+import { 
+  getPopularGames, 
+  getFeaturedGames, 
+  getRecentGames, 
+  getBestGames,
+  getAvailableGames 
+} from '@/lib/games';
+import { Star, TrendingUp, Clock, Trophy } from 'lucide-react';
 
 export default function Home() {
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const router = useRouter();
-  const [selectedGame, setSelectedGame] = useState<string | null>(null);
+  const { isCollapsed } = useSidebar();
+  
+  const popularGames = getPopularGames();
+  const featuredGames = getFeaturedGames();
+  const recentGames = getRecentGames();
+  const bestGames = getBestGames();
+  const allGames = getAvailableGames();
 
-  const handleGameSelect = (gameId: string) => {
-    setSelectedGame(gameId);
+  const handleGameClick = (gameId: string) => {
     router.push(`/games/${gameId}`);
   };
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-pink-900 to-orange-900 p-4">
-      {/* Header */}
-      <motion.header 
-        initial={{ y: -50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        className="text-center mb-8"
+  const GameSection = ({ 
+    title, 
+    games, 
+    icon: Icon, 
+    className = '' 
+  }: { 
+    title: string; 
+    games: any[]; 
+    icon: any; 
+    className?: string;
+  }) => (
+    <section className={`mb-8 ${className}`}>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="section-header"
       >
-        <h1 className="text-6xl font-bold text-white mb-2 retro-border p-4 inline-block">
-          DWB Mini Games
-        </h1>
-        <p className="text-xl text-gray-300">DickWifButt Gaming Community</p>
-      </motion.header>
-
-      {/* Navigation */}
-      <motion.nav 
-        initial={{ x: -50, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ delay: 0.2 }}
-        className="flex justify-center mb-8 space-x-4"
-      >
-        <button className="pixel-button px-6 py-3 text-white font-bold rounded-none">
-          <Home className="inline mr-2" />
-          Home
-        </button>
-        <button 
-          onClick={() => router.push('/leaderboard')}
-          className="pixel-button px-6 py-3 text-white font-bold rounded-none"
-        >
-          <Trophy className="inline mr-2" />
-          Leaderboard
-        </button>
-        <button className="pixel-button px-6 py-3 text-white font-bold rounded-none">
-          <Settings className="inline mr-2" />
-          Settings
-        </button>
-      </motion.nav>
-
-      {/* Games Grid */}
-      <motion.div 
-        initial={{ y: 50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.4 }}
-        className="max-w-6xl mx-auto"
-      >
-        <h2 className="text-3xl font-bold text-white mb-6 text-center">Available Games</h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {games.map((game, index) => (
-            <GameCard
-              key={game.id}
-              game={game}
-              onClick={handleGameSelect}
-              index={index}
-            />
-          ))}
-        </div>
+        <Icon className="icon" size={24} />
+        <h2>{title}</h2>
       </motion.div>
+      <GameCarousel games={games} showLabels={true} />
+    </section>
+  );
 
-      {/* Footer */}
-      <motion.footer 
-        initial={{ y: 50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.6 }}
-        className="text-center mt-12 text-gray-400"
-      >
-        <p>© 2024 DWB Mini Games - Powered by DickWifButt Community</p>
-      </motion.footer>
+  return (
+    <div className="min-h-screen bg-background">
+      <Header />
+      <div className="flex">
+        <Sidebar />
+        <main className={`flex-1 p-6 transition-all duration-300 ${isCollapsed ? 'ml-16' : 'ml-64'}`} style={{ marginLeft: isCollapsed ? '64px' : '256px' }}>
+          <div className="container">
+            {/* Hero Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mb-8 text-center"
+            >
+              <h1 className="text-4xl md:text-6xl font-bold mb-4">
+                Welcome to <span className="text-primary">DWB Games</span>
+              </h1>
+              <p className="text-xl text-muted-foreground mb-6">
+                Discover and play thousands of free online games
+              </p>
+              <div className="flex justify-center gap-4">
+                <button className="pixel-button text-lg px-8 py-3">
+                  Start Playing
+                </button>
+                <button className="bg-secondary text-secondary-foreground hover:bg-secondary/80 px-8 py-3 rounded font-medium transition-colors text-lg">
+                  Browse Games
+                </button>
+              </div>
+            </motion.div>
+
+            {/* Featured Games */}
+            {featuredGames.length > 0 && (
+              <GameSection 
+                title="Featured Games" 
+                games={featuredGames} 
+                icon={Star}
+              />
+            )}
+
+            {/* Popular Games */}
+            {popularGames.length > 0 && (
+              <GameSection 
+                title="Popular Games" 
+                games={popularGames} 
+                icon={TrendingUp}
+              />
+            )}
+
+            {/* Recent Games */}
+            {recentGames.length > 0 && (
+              <GameSection 
+                title="Recently Added" 
+                games={recentGames} 
+                icon={Clock}
+              />
+            )}
+
+            {/* Best Games */}
+            {bestGames.length > 0 && (
+              <GameSection 
+                title="Best Games" 
+                games={bestGames} 
+                icon={Trophy}
+              />
+            )}
+
+            {/* All Games Carousel */}
+            <section className="mb-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="section-header"
+              >
+                <h2>All Games</h2>
+                <span className="text-muted-foreground">({allGames.length} games)</span>
+              </motion.div>
+              <GameCarousel games={allGames.slice(0, 20)} showLabels={true} />
+            </section>
+          </div>
+        </main>
+      </div>
     </div>
   );
 }

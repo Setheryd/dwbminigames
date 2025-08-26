@@ -2,70 +2,244 @@ import { Game } from '@/types/game';
 
 export const games: Game[] = [
   {
+    id: 'serenitrove',
+    title: 'Serenitrove',
+    description: 'Dig deeper underground, level up, and craft better tools in this addictive mining game! Collect resources and upgrade your equipment to reach greater depths.',
+    difficulty: 'Medium',
+    highScore: 0,
+    isAvailable: true,
+    thumbnail: '/Thumbnails/12312312312weqwew3123.png',
+    category: 'Strategy',
+    estimatedPlayTime: '10-30 minutes',
+    isPopular: true,
+    isFeatured: true,
+    isRecent: true,
+    isBest: true
+  },
+  {
     id: 'flappy-dwb',
     title: 'Flappy DWB',
     description: 'Navigate your DickWifButt through obstacles in this classic flappy bird style game! Tap or click to make your character flap and avoid the pipes.',
     difficulty: 'Medium',
     highScore: 0,
     isAvailable: true,
-    thumbnail: '/api/placeholder/300/200',
+    thumbnail: '/Thumbnails/8ZxiKr9.jpeg',
     category: 'Arcade',
-    estimatedPlayTime: '2-5 minutes'
+    estimatedPlayTime: '2-5 minutes',
+    isPopular: true,
+    isFeatured: true,
+    isRecent: false,
+    isBest: false
   },
   {
     id: 'kitty-cannon-dwb',
-    title: 'DWB Cannon',
-    description: 'Launch your DickWifButt character to hit targets and score points! Adjust your angle and power to hit the bullseye.',
+    title: 'Kitty Cannon DWB',
+    description: 'Launch adorable kitties at targets in this physics-based puzzle game! Calculate angles and power to hit all targets.',
     difficulty: 'Easy',
     highScore: 0,
-    isAvailable: false,
-    thumbnail: '/api/placeholder/300/200',
-    category: 'Arcade',
-    estimatedPlayTime: '3-7 minutes'
+    isAvailable: true,
+    thumbnail: '/Thumbnails/34234234.jpg',
+    category: 'Puzzle',
+    estimatedPlayTime: '5-15 minutes',
+    isPopular: false,
+    isFeatured: false,
+    isRecent: true,
+    isBest: false
   },
   {
     id: 'dwb-runner',
     title: 'DWB Runner',
-    description: 'Run, jump, and dodge obstacles as your DickWifButt character! Collect coins and power-ups while avoiding enemies.',
+    description: 'Run, jump, and slide through an endless obstacle course! Collect coins and power-ups while avoiding dangerous obstacles.',
     difficulty: 'Hard',
     highScore: 0,
-    isAvailable: false,
-    thumbnail: '/api/placeholder/300/200',
+    isAvailable: true,
+    thumbnail: '/Thumbnails/34342342.jpeg',
     category: 'Action',
-    estimatedPlayTime: '5-10 minutes'
+    estimatedPlayTime: '3-10 minutes',
+    isPopular: true,
+    isFeatured: false,
+    isRecent: false,
+    isBest: true
   },
   {
-    id: 'dwb-puzzle',
-    title: 'DWB Puzzle',
-    description: 'Match and clear DickWifButt tiles in this addictive puzzle game! Create combos and special matches for bonus points.',
+    id: 'abduction-game',
+    title: 'Abduction Adventure',
+    description: 'Help aliens abduct humans in this strategic puzzle game! Plan your moves carefully to complete each level.',
+    difficulty: 'Medium',
+    highScore: 0,
+    isAvailable: true,
+    thumbnail: '/Thumbnails/ABDUCXTION.jpg',
+    category: 'Strategy',
+    estimatedPlayTime: '8-20 minutes',
+    isPopular: false,
+    isFeatured: true,
+    isRecent: false,
+    isBest: false
+  },
+  {
+    id: 'aspiring-hero',
+    title: 'Aspiring Hero',
+    description: 'Embark on an epic journey to become the greatest hero! Fight monsters, collect treasures, and level up your character.',
+    difficulty: 'Medium',
+    highScore: 0,
+    isAvailable: true,
+    thumbnail: '/Thumbnails/ASpiring.jpg',
+    category: 'Adventure',
+    estimatedPlayTime: '15-45 minutes',
+    isPopular: true,
+    isFeatured: false,
+    isRecent: true,
+    isBest: false
+  },
+  {
+    id: 'dead-piccolo',
+    title: 'Dead Piccolo',
+    description: 'A dark and atmospheric survival horror game. Navigate through a mysterious world filled with danger.',
+    difficulty: 'Hard',
+    highScore: 0,
+    isAvailable: true,
+    thumbnail: '/Thumbnails/dead piccalo.jpg',
+    category: 'Horror',
+    estimatedPlayTime: '20-60 minutes',
+    isPopular: false,
+    isFeatured: false,
+    isRecent: false,
+    isBest: false
+  },
+  {
+    id: 'king-kong',
+    title: 'King Kong Adventure',
+    description: 'Climb to the top as King Kong! Avoid obstacles and reach the highest point in this vertical climbing game.',
+    difficulty: 'Medium',
+    highScore: 0,
+    isAvailable: true,
+    thumbnail: '/Thumbnails/king kong.jpg',
+    category: 'Action',
+    estimatedPlayTime: '5-15 minutes',
+    isPopular: true,
+    isFeatured: true,
+    isRecent: false,
+    isBest: false
+  },
+  {
+    id: 'power-rush',
+    title: 'Power Rush',
+    description: 'Race against time in this high-speed action game! Collect power-ups and avoid obstacles to achieve the highest score.',
+    difficulty: 'Hard',
+    highScore: 0,
+    isAvailable: true,
+    thumbnail: '/Thumbnails/Powerr.jpg',
+    category: 'Racing',
+    estimatedPlayTime: '3-8 minutes',
+    isPopular: false,
+    isFeatured: false,
+    isRecent: true,
+    isBest: false
+  },
+  {
+    id: 'squishy-world',
+    title: 'Squishy World',
+    description: 'Explore a world made entirely of squishy materials! Solve puzzles and discover hidden secrets in this unique adventure.',
     difficulty: 'Easy',
     highScore: 0,
-    isAvailable: false,
-    thumbnail: '/api/placeholder/300/200',
+    isAvailable: true,
+    thumbnail: '/Thumbnails/Squishy.jpg',
     category: 'Puzzle',
-    estimatedPlayTime: '5-15 minutes'
+    estimatedPlayTime: '10-25 minutes',
+    isPopular: false,
+    isFeatured: false,
+    isRecent: false,
+    isBest: false
   },
   {
-    id: 'dwb-tetris',
-    title: 'DWB Tetris',
-    description: 'Classic Tetris with a DickWifButt twist! Stack the falling blocks and clear lines to score points.',
+    id: 'pito-adventure',
+    title: 'Pito Adventure',
+    description: 'Join Pito on an exciting adventure through mysterious lands! Solve puzzles and overcome challenges.',
     difficulty: 'Medium',
     highScore: 0,
-    isAvailable: false,
-    thumbnail: '/api/placeholder/300/200',
-    category: 'Puzzle',
-    estimatedPlayTime: '10-20 minutes'
+    isAvailable: true,
+    thumbnail: '/Thumbnails/PITO.jpg',
+    category: 'Adventure',
+    estimatedPlayTime: '12-30 minutes',
+    isPopular: false,
+    isFeatured: false,
+    isRecent: false,
+    isBest: false
   },
   {
-    id: 'dwb-snake',
-    title: 'DWB Snake',
-    description: 'Guide your DickWifButt snake to eat food and grow longer! Don\'t hit the walls or yourself.',
+    id: 'placeholder-1',
+    title: 'Mystery Game 1',
+    description: 'An exciting mystery game with unique gameplay mechanics and challenging puzzles.',
     difficulty: 'Medium',
     highScore: 0,
-    isAvailable: false,
-    thumbnail: '/api/placeholder/300/200',
-    category: 'Arcade',
-    estimatedPlayTime: '3-8 minutes'
+    isAvailable: true,
+    thumbnail: '/Thumbnails/ph1.jpg',
+    category: 'Puzzle',
+    estimatedPlayTime: '8-20 minutes',
+    isPopular: false,
+    isFeatured: false,
+    isRecent: false,
+    isBest: false
+  },
+  {
+    id: 'placeholder-2',
+    title: 'Adventure Quest 2',
+    description: 'Embark on a thrilling adventure with challenging quests and epic battles.',
+    difficulty: 'Hard',
+    highScore: 0,
+    isAvailable: true,
+    thumbnail: '/Thumbnails/ph2.jpg',
+    category: 'Adventure',
+    estimatedPlayTime: '15-40 minutes',
+    isPopular: false,
+    isFeatured: false,
+    isRecent: false,
+    isBest: false
+  },
+  {
+    id: 'placeholder-3',
+    title: 'Speed Racing 3',
+    description: 'Race at incredible speeds through challenging tracks and compete for the best time.',
+    difficulty: 'Medium',
+    highScore: 0,
+    isAvailable: true,
+    thumbnail: '/Thumbnails/ph3.jpg',
+    category: 'Racing',
+    estimatedPlayTime: '5-12 minutes',
+    isPopular: false,
+    isFeatured: false,
+    isRecent: false,
+    isBest: false
+  },
+  {
+    id: 'placeholder-4',
+    title: 'Puzzle Master 4',
+    description: 'Test your puzzle-solving skills with increasingly difficult challenges.',
+    difficulty: 'Easy',
+    highScore: 0,
+    isAvailable: true,
+    thumbnail: '/Thumbnails/ph4.jpg',
+    category: 'Puzzle',
+    estimatedPlayTime: '10-25 minutes',
+    isPopular: false,
+    isFeatured: false,
+    isRecent: false,
+    isBest: false
+  },
+  {
+    id: 'placeholder-5',
+    title: 'Action Hero 5',
+    description: 'Become an action hero and fight your way through waves of enemies.',
+    difficulty: 'Hard',
+    highScore: 0,
+    isAvailable: true,
+    thumbnail: '/Thumbnails/ph5.jpg',
+    category: 'Action',
+    estimatedPlayTime: '8-20 minutes',
+    isPopular: false,
+    isFeatured: false,
+    isRecent: false,
+    isBest: false
   }
 ];
 
@@ -83,4 +257,20 @@ export const getGamesByCategory = (category: string): Game[] => {
 
 export const getGamesByDifficulty = (difficulty: string): Game[] => {
   return games.filter(game => game.difficulty === difficulty);
+};
+
+export const getPopularGames = (): Game[] => {
+  return games.filter(game => game.isPopular);
+};
+
+export const getFeaturedGames = (): Game[] => {
+  return games.filter(game => game.isFeatured);
+};
+
+export const getRecentGames = (): Game[] => {
+  return games.filter(game => game.isRecent);
+};
+
+export const getBestGames = (): Game[] => {
+  return games.filter(game => game.isBest);
 };

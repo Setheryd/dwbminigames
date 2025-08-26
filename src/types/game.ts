@@ -8,9 +8,13 @@ export interface Game {
   thumbnail: string;
   category: GameCategory;
   estimatedPlayTime: string;
+  isPopular?: boolean;
+  isFeatured?: boolean;
+  isRecent?: boolean;
+  isBest?: boolean;
 }
 
-export type GameCategory = 'Arcade' | 'Puzzle' | 'Action' | 'Strategy' | 'Racing';
+export type GameCategory = 'Arcade' | 'Puzzle' | 'Action' | 'Strategy' | 'Racing' | 'Adventure' | 'Horror';
 
 export interface LeaderboardEntry {
   id: string;
