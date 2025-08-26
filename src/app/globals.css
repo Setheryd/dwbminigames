@@ -158,6 +158,7 @@
 .sidebar-toggle {
   @apply absolute top-4 right-2 p-1 rounded hover:bg-accent transition-colors;
   z-index: 10;
+  position: absolute;
 }
 
 .toggle-icon {
@@ -244,6 +245,7 @@
 .sidebar.collapsed:hover {
   width: clamp(240px, 16vw, 320px);
   overflow: visible;
+  z-index: 60;
 }
 
 .sidebar.collapsed:hover .sidebar-container {
@@ -254,6 +256,14 @@
   background: hsl(var(--card));
   border-right: 1px solid hsl(var(--border));
   box-shadow: 4px 0 8px rgba(0, 0, 0, 0.1);
+  z-index: 60;
+}
+
+/* Ensure sidebar container has proper positioning */
+.sidebar-container {
+  @apply h-full flex flex-col;
+  padding: 16px 8px;
+  position: relative;
 }
 
 /* Header styles */
@@ -304,7 +314,22 @@
 
 /* Search bar styles */
 .search-bar {
-  @apply bg-muted border border-input rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-ring;
+  @apply bg-muted border border-input rounded-full focus:outline-none focus:ring-2 focus:ring-ring;
+  padding: clamp(8px, 1vw, 12px) clamp(12px, 1.5vw, 16px);
+  font-size: clamp(0.875rem, 1vw, 1rem);
+}
+
+/* Responsive search bar for different monitor sizes */
+@media (min-width: 1920px) {
+  .search-bar {
+    padding: clamp(10px, 1.2vw, 14px) clamp(16px, 2vw, 20px);
+  }
+}
+
+@media (min-width: 2560px) {
+  .search-bar {
+    padding: clamp(12px, 1.5vw, 16px) clamp(20px, 2.5vw, 24px);
+  }
 }
 
 /* Game grid styles */
@@ -314,7 +339,10 @@
 
 /* Responsive container */
 .container {
-  @apply max-w-7xl mx-auto px-4;
+  @apply mx-auto;
+  padding: 0 clamp(16px, 2vw, 32px);
+  max-width: none;
+  width: 100%;
 }
 
 /* Game Carousel Styles */

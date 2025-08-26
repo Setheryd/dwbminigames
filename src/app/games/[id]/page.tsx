@@ -34,9 +34,10 @@ export default function GamePage() {
         <Header />
         <div className="flex">
           <Sidebar />
-          <main className="flex-1 p-6 transition-all duration-300" style={{ 
+          <main className="flex-1 transition-all duration-300" style={{ 
             marginLeft: isCollapsed ? 'clamp(56px, 4vw, 80px)' : 'clamp(240px, 16vw, 320px)',
-            padding: 'clamp(1rem, 2vw, 2rem)'
+            padding: 'clamp(1rem, 2vw, 2rem)',
+            width: `calc(100vw - ${isCollapsed ? 'clamp(56px, 4vw, 80px)' : 'clamp(240px, 16vw, 320px)'})`
           }}>
             <div className="container text-center">
               <h1 className="text-2xl font-bold mb-4">Game not found</h1>
@@ -56,9 +57,10 @@ export default function GamePage() {
       <Header />
       <div className="flex">
         <Sidebar />
-        <main className="flex-1 p-6 transition-all duration-300" style={{ 
+        <main className="flex-1 transition-all duration-300" style={{ 
           marginLeft: isCollapsed ? 'clamp(56px, 4vw, 80px)' : 'clamp(240px, 16vw, 320px)',
-          padding: 'clamp(1rem, 2vw, 2rem)'
+          padding: 'clamp(1rem, 2vw, 2rem)',
+          width: `calc(100vw - ${isCollapsed ? 'clamp(56px, 4vw, 80px)' : 'clamp(240px, 16vw, 320px)'})`
         }}>
           <div className="container">
             {/* Back Button */}

@@ -61,9 +61,10 @@ export default function Home() {
       <Header />
       <div className="flex">
         <Sidebar />
-        <main className="flex-1 p-6 transition-all duration-300" style={{ 
+        <main className="flex-1 transition-all duration-300" style={{ 
           marginLeft: isCollapsed ? 'clamp(56px, 4vw, 80px)' : 'clamp(240px, 16vw, 320px)',
-          padding: 'clamp(1rem, 2vw, 2rem)'
+          padding: 'clamp(1rem, 2vw, 2rem)',
+          width: `calc(100vw - ${isCollapsed ? 'clamp(56px, 4vw, 80px)' : 'clamp(240px, 16vw, 320px)'})`
         }}>
           <div className="container">
             {/* Hero Section */}
