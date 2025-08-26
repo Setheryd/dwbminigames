@@ -56,10 +56,28 @@ export interface LayoutItem {
 export interface LayoutRow {
   items: LayoutItem[];
   height: number;
-  type: 'single' | 'double' | 'triple' | 'quad' | 'quint' | 'sext' | 'mixed';
+  type: 'triple' | 'quad' | 'quint' | 'sext' | 'mixed';
 }
 
-// Helper function to shuffle an array
+// Helper function to shuffle an array with a deterministic seed
+function shuffleArrayWithSeed<T>(array: T[], seed: number): T[] {
+  const shuffled = [...array];
+  let currentSeed = seed;
+  
+  // Simple deterministic random number generator
+  const random = () => {
+    currentSeed = (currentSeed * 9301 + 49297) % 233280;
+    return currentSeed / 233280;
+  };
+  
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
+// Helper function to shuffle an array (for backward compatibility)
 function shuffleArray<T>(array: T[]): T[] {
   const shuffled = [...array];
   for (let i = shuffled.length - 1; i > 0; i--) {
@@ -70,15 +88,17 @@ function shuffleArray<T>(array: T[]): T[] {
 }
 
 export function createOptimalLayout(games: any[], maxItems: number = 24): LayoutRow[] {
-  // Shuffle the games array for more variety
-  const shuffledGames = shuffleArray(games);
+  // Use a deterministic seed for consistent server/client rendering
+  const seed = games.length + maxItems; // Simple deterministic seed
+  const shuffledGames = shuffleArrayWithSeed(games, seed);
   const availableGames = shuffledGames.slice(0, maxItems);
   const rows: LayoutRow[] = [];
   let currentRow: LayoutItem[] = [];
   let currentRowHeight = 0;
   let usedThumbnails = new Set<string>();
 
-  // Helper function to get a unique thumbnail with randomization
+  // Helper function to get a unique thumbnail with deterministic selection
+  let thumbnailIndex = 0;
   function getUniqueThumbnail(): string {
     const allThumbnails = Object.keys(thumbnailDimensions);
     const availableThumbnails = allThumbnails.filter(thumbnail => {
@@ -89,14 +109,15 @@ export function createOptimalLayout(games: any[], maxItems: number = 24): Layout
     if (availableThumbnails.length === 0) {
       // If all thumbnails are used, reset and start over
       usedThumbnails.clear();
+      thumbnailIndex = 0;
       return getUniqueThumbnail();
     }
 
-    // Randomly select from available thumbnails
-    const randomIndex = Math.floor(Math.random() * availableThumbnails.length);
-    const selectedThumbnail = availableThumbnails[randomIndex];
+    // Deterministically select from available thumbnails
+    const selectedThumbnail = availableThumbnails[thumbnailIndex % availableThumbnails.length];
     const fullPath = `/Thumbnails/${selectedThumbnail}`;
     usedThumbnails.add(fullPath);
+    thumbnailIndex++;
     return fullPath;
   }
 
@@ -116,32 +137,11 @@ export function createOptimalLayout(games: any[], maxItems: number = 24): Layout
       // First item in row - any orientation works
       shouldStartNewRow = false;
     } else if (currentRow.length === 1) {
-      if (currentRow[0].dimensions.orientation === 'portrait') {
-        // Current row has portrait, we can add landscape
-        if (dimensions.orientation === 'landscape') {
-          shouldStartNewRow = false;
-        } else {
-          // Got another portrait, start new row
-          shouldStartNewRow = true;
-        }
-      } else {
-        // Current row has landscape, we can add either
-        shouldStartNewRow = false;
-      }
+      // Always add to row if we only have 1 item (need at least 3)
+      shouldStartNewRow = false;
     } else if (currentRow.length === 2) {
-      const hasPortrait = currentRow.some(item => item.dimensions.orientation === 'portrait');
-      if (hasPortrait) {
-        // Row has portrait + landscape, can add another landscape
-        if (dimensions.orientation === 'landscape') {
-          shouldStartNewRow = false;
-        } else {
-          // Got portrait, start new row
-          shouldStartNewRow = true;
-        }
-      } else {
-        // Row has 2 landscapes, can add more landscapes or portrait
-        shouldStartNewRow = false;
-      }
+      // Always add to row if we only have 2 items (need at least 3)
+      shouldStartNewRow = false;
     } else if (currentRow.length === 3) {
       const hasPortrait = currentRow.some(item => item.dimensions.orientation === 'portrait');
       if (hasPortrait) {
@@ -190,13 +190,12 @@ export function createOptimalLayout(games: any[], maxItems: number = 24): Layout
     }
     
     // If we need to start a new row, do it first
-    if (shouldStartNewRow && currentRow.length > 0) {
+    // But only if we have at least 3 items (minimum requirement)
+    if (shouldStartNewRow && currentRow.length >= 3) {
       rows.push({
         items: currentRow,
         height: currentRowHeight,
-        type: currentRow.length === 1 ? 'single' : 
-              currentRow.length === 2 ? 'double' : 
-              currentRow.length === 3 ? 'triple' :
+        type: currentRow.length === 3 ? 'triple' :
               currentRow.length === 4 ? 'quad' :
               currentRow.length === 5 ? 'quint' : 'sext'
       });
@@ -230,9 +229,7 @@ export function createOptimalLayout(games: any[], maxItems: number = 24): Layout
       rows.push({
         items: currentRow,
         height: currentRowHeight,
-        type: currentRow.length === 1 ? 'single' : 
-              currentRow.length === 2 ? 'double' : 
-              currentRow.length === 3 ? 'triple' :
+        type: currentRow.length === 3 ? 'triple' :
               currentRow.length === 4 ? 'quad' :
               currentRow.length === 5 ? 'quint' : 'sext'
       });
@@ -241,14 +238,12 @@ export function createOptimalLayout(games: any[], maxItems: number = 24): Layout
     }
   }
 
-  // Add remaining items
-  if (currentRow.length > 0) {
+  // Add remaining items (only if we have at least 3 items)
+  if (currentRow.length >= 3) {
     rows.push({
       items: currentRow,
       height: currentRowHeight,
-      type: currentRow.length === 1 ? 'single' : 
-            currentRow.length === 2 ? 'double' : 
-            currentRow.length === 3 ? 'triple' :
+      type: currentRow.length === 3 ? 'triple' :
             currentRow.length === 4 ? 'quad' :
             currentRow.length === 5 ? 'quint' : 'sext'
     });

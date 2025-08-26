@@ -20,10 +20,6 @@ export default function GameGrid({ games, title, showLabels = false, maxItems = 
 
   const getRowLayoutClass = (row: LayoutRow) => {
     switch (row.type) {
-      case 'single':
-        return styles.single;
-      case 'double':
-        return styles.double;
       case 'triple':
         return styles.triple;
       case 'quad':
@@ -35,7 +31,7 @@ export default function GameGrid({ games, title, showLabels = false, maxItems = 
       case 'mixed':
         return styles.mixed;
       default:
-        return styles.single;
+        return styles.triple;
     }
   };
 
