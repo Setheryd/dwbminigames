@@ -56,37 +56,153 @@ export interface LayoutItem {
 export interface LayoutRow {
   items: LayoutItem[];
   height: number;
-  type: 'single' | 'double' | 'triple' | 'mixed';
+  type: 'single' | 'double' | 'triple' | 'quad' | 'quint' | 'sext' | 'mixed';
+}
+
+// Helper function to shuffle an array
+function shuffleArray<T>(array: T[]): T[] {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
 }
 
 export function createOptimalLayout(games: any[], maxItems: number = 24): LayoutRow[] {
-  const availableGames = games.slice(0, maxItems);
+  // Shuffle the games array for more variety
+  const shuffledGames = shuffleArray(games);
+  const availableGames = shuffledGames.slice(0, maxItems);
   const rows: LayoutRow[] = [];
   let currentRow: LayoutItem[] = [];
   let currentRowHeight = 0;
   let usedThumbnails = new Set<string>();
 
-  // Helper function to get a unique thumbnail
+  // Helper function to get a unique thumbnail with randomization
   function getUniqueThumbnail(): string {
     const allThumbnails = Object.keys(thumbnailDimensions);
-    for (const thumbnail of allThumbnails) {
+    const availableThumbnails = allThumbnails.filter(thumbnail => {
       const fullPath = `/Thumbnails/${thumbnail}`;
-      if (!usedThumbnails.has(fullPath)) {
-        usedThumbnails.add(fullPath);
-        return fullPath;
-      }
+      return !usedThumbnails.has(fullPath);
+    });
+
+    if (availableThumbnails.length === 0) {
+      // If all thumbnails are used, reset and start over
+      usedThumbnails.clear();
+      return getUniqueThumbnail();
     }
-    // If all thumbnails are used, reset and start over
-    usedThumbnails.clear();
-    const firstThumbnail = allThumbnails[0];
-    usedThumbnails.add(`/Thumbnails/${firstThumbnail}`);
-    return `/Thumbnails/${firstThumbnail}`;
+
+    // Randomly select from available thumbnails
+    const randomIndex = Math.floor(Math.random() * availableThumbnails.length);
+    const selectedThumbnail = availableThumbnails[randomIndex];
+    const fullPath = `/Thumbnails/${selectedThumbnail}`;
+    usedThumbnails.add(fullPath);
+    return fullPath;
   }
+
+
 
   for (let i = 0; i < availableGames.length; i++) {
     const game = availableGames[i];
+    
+    // First, get a random thumbnail to see what orientation we actually have
     const thumbnail = getUniqueThumbnail();
     const dimensions = getImageDimensionsFromPath(thumbnail);
+    
+    // Now determine if this orientation works with our current row
+    let shouldStartNewRow = false;
+    
+    if (currentRow.length === 0) {
+      // First item in row - any orientation works
+      shouldStartNewRow = false;
+    } else if (currentRow.length === 1) {
+      if (currentRow[0].dimensions.orientation === 'portrait') {
+        // Current row has portrait, we can add landscape
+        if (dimensions.orientation === 'landscape') {
+          shouldStartNewRow = false;
+        } else {
+          // Got another portrait, start new row
+          shouldStartNewRow = true;
+        }
+      } else {
+        // Current row has landscape, we can add either
+        shouldStartNewRow = false;
+      }
+    } else if (currentRow.length === 2) {
+      const hasPortrait = currentRow.some(item => item.dimensions.orientation === 'portrait');
+      if (hasPortrait) {
+        // Row has portrait + landscape, can add another landscape
+        if (dimensions.orientation === 'landscape') {
+          shouldStartNewRow = false;
+        } else {
+          // Got portrait, start new row
+          shouldStartNewRow = true;
+        }
+      } else {
+        // Row has 2 landscapes, can add more landscapes or portrait
+        shouldStartNewRow = false;
+      }
+    } else if (currentRow.length === 3) {
+      const hasPortrait = currentRow.some(item => item.dimensions.orientation === 'portrait');
+      if (hasPortrait) {
+        // Row has portrait + landscapes, can add more landscapes
+        if (dimensions.orientation === 'landscape') {
+          shouldStartNewRow = false;
+        } else {
+          // Got portrait, start new row
+          shouldStartNewRow = true;
+        }
+      } else {
+        // Row has 3 landscapes, can add more landscapes or portrait
+        shouldStartNewRow = false;
+      }
+    } else if (currentRow.length === 4) {
+      const hasPortrait = currentRow.some(item => item.dimensions.orientation === 'portrait');
+      if (hasPortrait) {
+        // Row has portrait + landscapes, can add more landscapes
+        if (dimensions.orientation === 'landscape') {
+          shouldStartNewRow = false;
+        } else {
+          // Got portrait, start new row
+          shouldStartNewRow = true;
+        }
+      } else {
+        // Row has 4 landscapes, can add more landscapes or portrait
+        shouldStartNewRow = false;
+      }
+    } else if (currentRow.length === 5) {
+      const hasPortrait = currentRow.some(item => item.dimensions.orientation === 'portrait');
+      if (hasPortrait) {
+        // Row has portrait + landscapes, can add one more landscape
+        if (dimensions.orientation === 'landscape') {
+          shouldStartNewRow = false;
+        } else {
+          // Got portrait, start new row
+          shouldStartNewRow = true;
+        }
+      } else {
+        // Row has 5 landscapes, can add one more landscape or portrait
+        shouldStartNewRow = false;
+      }
+    } else {
+      // Row is full (6 items), start new row
+      shouldStartNewRow = true;
+    }
+    
+    // If we need to start a new row, do it first
+    if (shouldStartNewRow && currentRow.length > 0) {
+      rows.push({
+        items: currentRow,
+        height: currentRowHeight,
+        type: currentRow.length === 1 ? 'single' : 
+              currentRow.length === 2 ? 'double' : 
+              currentRow.length === 3 ? 'triple' :
+              currentRow.length === 4 ? 'quad' :
+              currentRow.length === 5 ? 'quint' : 'sext'
+      });
+      currentRow = [];
+      currentRowHeight = 0;
+    }
     
     const item: LayoutItem = {
       id: game.id,
@@ -99,67 +215,26 @@ export function createOptimalLayout(games: any[], maxItems: number = 24): Layout
       col: currentRow.length
     };
 
-    // Determine layout based on aspect ratio
+    // Add the item to the current row
+    currentRow.push(item);
+    
+    // Update row height based on the new item
     if (dimensions.orientation === 'portrait') {
-      // Portrait images (9:16) - can be stacked with 2 landscape images
-      if (currentRow.length === 0) {
-        // Start new row with portrait
-        currentRow = [item];
-        currentRowHeight = 300; // Base height for portrait
-      } else if (currentRow.length === 1 && currentRow[0].dimensions.orientation === 'landscape') {
-        // Add portrait to existing landscape
-        currentRow.push(item);
-        currentRowHeight = Math.max(currentRowHeight, 300);
-      } else {
-        // Start new row
-        if (currentRow.length > 0) {
-          rows.push({
-            items: currentRow,
-            height: currentRowHeight,
-            type: currentRow.length === 1 ? 'single' : 'mixed'
-          });
-        }
-        currentRow = [item];
-        currentRowHeight = 300;
-      }
+      currentRowHeight = Math.max(currentRowHeight, 300);
     } else {
-      // Landscape images (16:9)
-      if (currentRow.length === 0) {
-        // Start new row with landscape
-        currentRow = [item];
-        currentRowHeight = 200; // Base height for landscape
-      } else if (currentRow.length === 1) {
-        if (currentRow[0].dimensions.orientation === 'portrait') {
-          // Add landscape to existing portrait
-          currentRow.push(item);
-          currentRowHeight = Math.max(currentRowHeight, 200);
-        } else {
-          // Add second landscape
-          currentRow.push(item);
-          currentRowHeight = 200;
-        }
-      } else if (currentRow.length === 2) {
-        // Add third landscape
-        currentRow.push(item);
-        currentRowHeight = 200;
-      } else {
-        // Start new row
-        rows.push({
-          items: currentRow,
-          height: currentRowHeight,
-          type: currentRow.length === 1 ? 'single' : currentRow.length === 2 ? 'double' : 'triple'
-        });
-        currentRow = [item];
-        currentRowHeight = 200;
-      }
+      currentRowHeight = Math.max(currentRowHeight, 200);
     }
-
-    // If we have 3 items in a row, start a new row
-    if (currentRow.length >= 3) {
+    
+    // If we have 6 items in a row, start a new row (for normal window sizes)
+    if (currentRow.length >= 6) {
       rows.push({
         items: currentRow,
         height: currentRowHeight,
-        type: currentRow.length === 1 ? 'single' : currentRow.length === 2 ? 'double' : 'triple'
+        type: currentRow.length === 1 ? 'single' : 
+              currentRow.length === 2 ? 'double' : 
+              currentRow.length === 3 ? 'triple' :
+              currentRow.length === 4 ? 'quad' :
+              currentRow.length === 5 ? 'quint' : 'sext'
       });
       currentRow = [];
       currentRowHeight = 0;
@@ -171,7 +246,11 @@ export function createOptimalLayout(games: any[], maxItems: number = 24): Layout
     rows.push({
       items: currentRow,
       height: currentRowHeight,
-      type: currentRow.length === 1 ? 'single' : currentRow.length === 2 ? 'double' : 'triple'
+      type: currentRow.length === 1 ? 'single' : 
+            currentRow.length === 2 ? 'double' : 
+            currentRow.length === 3 ? 'triple' :
+            currentRow.length === 4 ? 'quad' :
+            currentRow.length === 5 ? 'quint' : 'sext'
     });
   }
 

@@ -26,6 +26,12 @@ export default function GameGrid({ games, title, showLabels = false, maxItems = 
         return styles.double;
       case 'triple':
         return styles.triple;
+      case 'quad':
+        return styles.quad;
+      case 'quint':
+        return styles.quint;
+      case 'sext':
+        return styles.sext;
       case 'mixed':
         return styles.mixed;
       default:

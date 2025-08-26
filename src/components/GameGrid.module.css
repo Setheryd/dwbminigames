@@ -31,6 +31,21 @@
   height: 200px;
 }
 
+.gameGridRow.quad {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  height: 200px;
+}
+
+.gameGridRow.quint {
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  height: 200px;
+}
+
+.gameGridRow.sext {
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  height: 200px;
+}
+
 .gameGridRow.mixed {
   grid-template-columns: 1fr 1fr;
   height: 300px;
