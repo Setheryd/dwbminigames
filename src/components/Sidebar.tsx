@@ -319,186 +319,186 @@ export default function Sidebar() {
                 )}
               </Link>
             );
-          })}
-        </nav>
+                     })}
 
-        {/* Contact Button */}
-        <div 
-          className="sidebar-contact"
-          style={{
-            marginTop: '24px',
-            padding: '0 16px'
-          }}
-        >
-          <button 
-            className="contact-button"
-            style={{
-              width: '100%',
-              backgroundColor: 'hsl(var(--primary))',
-              color: 'hsl(var(--primary-foreground))',
-              border: 'none',
-              borderRadius: '4px',
-              fontWeight: 500,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '8px',
-              padding: '8px 12px',
-              fontSize: '0.875rem',
-              cursor: 'pointer',
-              transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = 'hsl(var(--primary) / 0.9)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = 'hsl(var(--primary))';
-            }}
-          >
-            <Mail size={16} />
-            {(!isCollapsed || isHovered) && (
-              <span style={{ opacity: 1, visibility: 'visible' }}>Contact us</span>
-            )}
-          </button>
-        </div>
+           {/* Contact Button */}
+           <div 
+             className="sidebar-contact"
+             style={{
+               marginTop: '24px',
+               padding: '0 16px'
+             }}
+           >
+             <button 
+               className="contact-button"
+               style={{
+                 width: '100%',
+                 backgroundColor: 'hsl(var(--primary))',
+                 color: 'hsl(var(--primary-foreground))',
+                 border: 'none',
+                 borderRadius: '4px',
+                 fontWeight: 500,
+                 display: 'flex',
+                 alignItems: 'center',
+                 justifyContent: 'center',
+                 gap: '8px',
+                 padding: '8px 12px',
+                 fontSize: '0.875rem',
+                 cursor: 'pointer',
+                 transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)'
+               }}
+               onMouseEnter={(e) => {
+                 e.currentTarget.style.backgroundColor = 'hsl(var(--primary) / 0.9)';
+               }}
+               onMouseLeave={(e) => {
+                 e.currentTarget.style.backgroundColor = 'hsl(var(--primary))';
+               }}
+             >
+               <Mail size={16} />
+               {(!isCollapsed || isHovered) && (
+                 <span style={{ opacity: 1, visibility: 'visible' }}>Contact us</span>
+               )}
+             </button>
+           </div>
 
-        {/* Language Selector */}
-        <div 
-          className="sidebar-language"
-          style={{
-            marginTop: '16px',
-            padding: '0 16px'
-          }}
-        >
-          <button 
-            className="language-button"
-            style={{
-              width: '100%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              padding: '8px',
-              backgroundColor: 'hsl(var(--muted))',
-              borderRadius: '4px',
-              fontSize: '0.875rem',
-              border: 'none',
-              cursor: 'pointer',
-              transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = 'hsl(var(--accent))';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = 'hsl(var(--muted))';
-            }}
-          >
-            {(!isCollapsed || isHovered) && (
-              <span style={{ opacity: 1, visibility: 'visible' }}>English</span>
-            )}
-            <Globe size={16} />
-          </button>
-        </div>
+           {/* Language Selector */}
+           <div 
+             className="sidebar-language"
+             style={{
+               marginTop: '16px',
+               padding: '0 16px'
+             }}
+           >
+             <button 
+               className="language-button"
+               style={{
+                 width: '100%',
+                 display: 'flex',
+                 alignItems: 'center',
+                 justifyContent: 'space-between',
+                 padding: '8px',
+                 backgroundColor: 'hsl(var(--muted))',
+                 borderRadius: '4px',
+                 fontSize: '0.875rem',
+                 border: 'none',
+                 cursor: 'pointer',
+                 transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)'
+               }}
+               onMouseEnter={(e) => {
+                 e.currentTarget.style.backgroundColor = 'hsl(var(--accent))';
+               }}
+               onMouseLeave={(e) => {
+                 e.currentTarget.style.backgroundColor = 'hsl(var(--muted))';
+               }}
+             >
+               {(!isCollapsed || isHovered) && (
+                 <span style={{ opacity: 1, visibility: 'visible' }}>English</span>
+               )}
+               <Globe size={16} />
+             </button>
+           </div>
 
-        {/* Footer Links */}
-        {(!isCollapsed || isHovered) && (
-          <div 
-            className="sidebar-footer-links"
-            style={{
-              marginTop: '24px',
-              padding: '0 16px',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '8px',
-              opacity: 1,
-              visibility: 'visible'
-            }}
-          >
-            {footerLinks.map((link, index) => (
-              <Link
-                key={index}
-                href={link.href}
-                target={link.external ? '_blank' : undefined}
-                rel={link.external ? 'noopener noreferrer' : undefined}
-                className="footer-link"
-                style={{
-                  display: 'block',
-                  fontSize: '0.75rem',
-                  color: 'hsl(var(--muted-foreground))',
-                  textDecoration: 'none',
-                  transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = 'hsl(var(--foreground))';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = 'hsl(var(--muted-foreground))';
-                }}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
-        )}
+           {/* Footer Links */}
+           {(!isCollapsed || isHovered) && (
+             <div 
+               className="sidebar-footer-links"
+               style={{
+                 marginTop: '24px',
+                 padding: '0 16px',
+                 display: 'flex',
+                 flexDirection: 'column',
+                 gap: '8px',
+                 opacity: 1,
+                 visibility: 'visible'
+               }}
+             >
+               {footerLinks.map((link, index) => (
+                 <Link
+                   key={index}
+                   href={link.href}
+                   target={link.external ? '_blank' : undefined}
+                   rel={link.external ? 'noopener noreferrer' : undefined}
+                   className="footer-link"
+                   style={{
+                     display: 'block',
+                     fontSize: '0.75rem',
+                     color: 'hsl(var(--muted-foreground))',
+                     textDecoration: 'none',
+                     transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)'
+                   }}
+                   onMouseEnter={(e) => {
+                     e.currentTarget.style.color = 'hsl(var(--foreground))';
+                   }}
+                   onMouseLeave={(e) => {
+                     e.currentTarget.style.color = 'hsl(var(--muted-foreground))';
+                   }}
+                 >
+                   {link.label}
+                 </Link>
+               ))}
+             </div>
+           )}
 
-        {/* Social Links */}
-        <div 
-          className="sidebar-social-links"
-          style={{
-            marginTop: '16px',
-            padding: '0 16px',
-            display: 'flex',
-            gap: '8px',
-            flexWrap: 'wrap'
-          }}
-        >
-          {socialLinks.map((social, index) => {
-            const Icon = social.icon;
-            return (
-              <Link
-                key={index}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-link"
-                aria-label={social.label}
-                title={isCollapsed ? social.label : undefined}
-                style={{
-                  padding: '8px',
-                  backgroundColor: 'hsl(var(--muted))',
-                  borderRadius: '4px',
-                  textDecoration: 'none',
-                  transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = 'hsl(var(--accent))';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'hsl(var(--muted))';
-                }}
-              >
-                <Icon size={16} />
-              </Link>
-            );
-          })}
-        </div>
+           {/* Social Links */}
+           <div 
+             className="sidebar-social-links"
+             style={{
+               marginTop: '16px',
+               padding: '0 16px',
+               display: 'flex',
+               gap: '8px',
+               flexWrap: 'wrap'
+             }}
+           >
+             {socialLinks.map((social, index) => {
+               const Icon = social.icon;
+               return (
+                 <Link
+                   key={index}
+                   href={social.href}
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   className="social-link"
+                   aria-label={social.label}
+                   title={isCollapsed ? social.label : undefined}
+                   style={{
+                     padding: '8px',
+                     backgroundColor: 'hsl(var(--muted))',
+                     borderRadius: '4px',
+                     textDecoration: 'none',
+                     transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)'
+                   }}
+                   onMouseEnter={(e) => {
+                     e.currentTarget.style.backgroundColor = 'hsl(var(--accent))';
+                   }}
+                   onMouseLeave={(e) => {
+                     e.currentTarget.style.backgroundColor = 'hsl(var(--muted))';
+                   }}
+                 >
+                   <Icon size={16} />
+                 </Link>
+               );
+             })}
+           </div>
 
-        {/* Copyright */}
-        {(!isCollapsed || isHovered) && (
-          <div 
-            className="sidebar-copyright"
-            style={{
-              marginTop: '16px',
-              padding: '0 16px',
-              fontSize: '0.75rem',
-              color: 'hsl(var(--muted-foreground))',
-              textAlign: 'center',
-              opacity: 1,
-              visibility: 'visible'
-            }}
-          >
-            © 2025 DWB Games
-          </div>
-        )}
+           {/* Copyright */}
+           {(!isCollapsed || isHovered) && (
+             <div 
+               className="sidebar-copyright"
+               style={{
+                 marginTop: '16px',
+                 padding: '0 16px',
+                 fontSize: '0.75rem',
+                 color: 'hsl(var(--muted-foreground))',
+                 textAlign: 'center',
+                 opacity: 1,
+                 visibility: 'visible'
+               }}
+             >
+               © 2025 DWB Games
+             </div>
+           )}
+         </nav>
       </div>
     </aside>
   );
