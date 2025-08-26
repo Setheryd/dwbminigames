@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useSidebar } from '@/contexts/SidebarContext';
 import { useState } from 'react';
+import styles from './Sidebar.module.css';
 import { 
   Home, 
   Clock, 
@@ -15,7 +16,6 @@ import {
   Gamepad2,
   Target,
   Car,
-  Basketball,
   Puzzle,
   Zap,
   Shield,
@@ -32,13 +32,10 @@ import {
   Bike,
   MousePointer,
   Shirt,
-  Flash,
   Crosshair,
   Ghost,
   Network,
   Blocks,
-  Gun,
-  Soccer,
   Dumbbell,
   UserCheck,
   Brain,
@@ -58,7 +55,7 @@ const sidebarItems = [
   { icon: User, label: '2 Player', href: '/2-player' },
   { icon: Zap, label: 'Action', href: '/action' },
   { icon: Target, label: 'Adventure', href: '/adventure' },
-  { icon: Basketball, label: 'Basketball', href: '/basketball' },
+  { icon: Target, label: 'Basketball', href: '/basketball' },
   { icon: Heart, label: 'Beauty', href: '/beauty' },
   { icon: Bike, label: 'Bike', href: '/bike' },
   { icon: Car, label: 'Car', href: '/car' },
@@ -69,16 +66,16 @@ const sidebarItems = [
   { icon: Shirt, label: 'Dress Up', href: '/dress-up' },
   { icon: Car, label: 'Driving', href: '/driving' },
   { icon: Target, label: 'Escape', href: '/escape' },
-  { icon: Flash, label: 'Flash', href: '/flash' },
+  { icon: Zap, label: 'Flash', href: '/flash' },
   { icon: Crosshair, label: 'FPS', href: '/fps' },
   { icon: Ghost, label: 'Horror', href: '/horror' },
   { icon: Network, label: '.io', href: '/io' },
   { icon: Blocks, label: 'Mahjong', href: '/mahjong' },
   { icon: Gamepad2, label: 'Minecraft', href: '/minecraft' },
-  { icon: Basketball, label: 'Pool', href: '/pool' },
+  { icon: Target, label: 'Pool', href: '/pool' },
   { icon: Puzzle, label: 'Puzzle', href: '/puzzle' },
-  { icon: Gun, label: 'Shooting', href: '/shooting' },
-  { icon: Soccer, label: 'Soccer', href: '/soccer' },
+  { icon: Crosshair, label: 'Shooting', href: '/shooting' },
+  { icon: Target, label: 'Soccer', href: '/soccer' },
   { icon: Dumbbell, label: 'Sports', href: '/sports' },
   { icon: UserCheck, label: 'Stickman', href: '/stickman' },
   { icon: Brain, label: 'Thinky', href: '/thinky' },
@@ -113,30 +110,30 @@ export default function Sidebar() {
   const shouldShowExpanded = isCollapsed && isHovered;
 
   return (
-    <div 
-      className={`sidebar ${isCollapsed ? 'collapsed' : ''}`}
+    <aside 
+      className={`${styles.sidebar} ${isCollapsed ? styles.collapsed : ''}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="sidebar-container">
+      <div className={styles.sidebarContainer}>
         {/* Logo */}
-        <div className="sidebar-logo">
-          <div className="logo-icon">
+        <div className={styles.sidebarLogo}>
+          <div className={styles.logoIcon}>
             <span>DWB</span>
           </div>
           {(!isCollapsed || shouldShowExpanded) && (
-            <div className="logo-text">DWB Games</div>
+            <div className={styles.logoText}>DWB Games</div>
           )}
         </div>
         
         {/* Collapse Toggle Button */}
         <button 
           onClick={toggleSidebar}
-          className="sidebar-toggle"
+          className={styles.sidebarToggle}
           aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
         >
           <svg 
-            className={`toggle-icon ${isCollapsed ? 'rotate-180' : ''}`}
+            className={`${styles.toggleIcon} ${isCollapsed ? styles.rotate180 : ''}`}
             fill="none" 
             stroke="currentColor" 
             viewBox="0 0 24 24"
@@ -146,10 +143,10 @@ export default function Sidebar() {
         </button>
 
         {/* Navigation Links */}
-        <nav className="sidebar-nav">
+        <nav className={styles.sidebarNav}>
           {sidebarItems.map((item, index) => {
             if (item.type === 'divider') {
-              return <hr key={index} className="sidebar-divider" />;
+              return <hr key={index} className={styles.sidebarDivider} />;
             }
 
             const Icon = item.icon;
@@ -160,15 +157,15 @@ export default function Sidebar() {
               <Link
                 key={index}
                 href={isDisabled ? '#' : item.href}
-                className={`sidebar-link ${isActive ? 'active' : ''} ${isDisabled ? 'disabled' : ''}`}
+                className={`${styles.sidebarLink} ${isActive ? styles.active : ''} ${isDisabled ? styles.disabled : ''}`}
                 onClick={isDisabled ? (e) => e.preventDefault() : undefined}
                 title={isCollapsed && !shouldShowExpanded ? item.label : undefined}
               >
-                <div className="link-icon">
+                <div className={styles.linkIcon}>
                   {Icon && <Icon size={20} />}
                 </div>
                 {(!isCollapsed || shouldShowExpanded) && (
-                  <div className="link-label">{item.label}</div>
+                  <div className={styles.linkLabel}>{item.label}</div>
                 )}
               </Link>
             );
@@ -176,16 +173,16 @@ export default function Sidebar() {
         </nav>
 
         {/* Contact Button */}
-        <div className="sidebar-contact">
-          <button className="contact-button">
+        <div className={styles.sidebarContact}>
+          <button className={styles.contactButton}>
             <Mail size={16} />
             {(!isCollapsed || shouldShowExpanded) && <span>Contact us</span>}
           </button>
         </div>
 
         {/* Language Selector */}
-        <div className="sidebar-language">
-          <button className="language-button">
+        <div className={styles.sidebarLanguage}>
+          <button className={styles.languageButton}>
             {(!isCollapsed || shouldShowExpanded) && <span>English</span>}
             <Globe size={16} />
           </button>
@@ -193,14 +190,14 @@ export default function Sidebar() {
 
         {/* Footer Links */}
         {(!isCollapsed || shouldShowExpanded) && (
-          <div className="sidebar-footer-links">
+          <div className={styles.sidebarFooterLinks}>
             {footerLinks.map((link, index) => (
               <Link
                 key={index}
                 href={link.href}
                 target={link.external ? '_blank' : undefined}
                 rel={link.external ? 'noopener noreferrer' : undefined}
-                className="footer-link"
+                className={styles.footerLink}
               >
                 {link.label}
               </Link>
@@ -209,7 +206,7 @@ export default function Sidebar() {
         )}
 
         {/* Social Links */}
-        <div className="sidebar-social-links">
+        <div className={styles.sidebarSocialLinks}>
           {socialLinks.map((social, index) => {
             const Icon = social.icon;
             return (
@@ -218,7 +215,7 @@ export default function Sidebar() {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="social-link"
+                className={styles.socialLink}
                 aria-label={social.label}
                 title={isCollapsed && !shouldShowExpanded ? social.label : undefined}
               >
@@ -230,11 +227,11 @@ export default function Sidebar() {
 
         {/* Copyright */}
         {(!isCollapsed || shouldShowExpanded) && (
-          <div className="sidebar-copyright">
+          <div className={styles.sidebarCopyright}>
             © 2025 DWB Games
           </div>
         )}
       </div>
-    </div>
+    </aside>
   );
 }

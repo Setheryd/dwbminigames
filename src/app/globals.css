@@ -47,6 +47,17 @@
     --input: 12 16% 12%;
     --ring: 250 100% 60%;
   }
+  
+  /* Fallback colors in case CSS variables don't work */
+  html {
+    background-color: #0c0d14;
+    color: #f9faff;
+  }
+  
+  body {
+    background-color: #0c0d14 !important;
+    color: #f9faff !important;
+  }
 }
 
 @layer base {
@@ -56,6 +67,10 @@
   body {
     @apply bg-background text-foreground font-sans;
     font-family: var(--font-nunito), system-ui, sans-serif;
+    /* Debug: Ensure background is applied */
+    background-color: hsl(var(--background)) !important;
+    color: hsl(var(--foreground)) !important;
+
   }
   
   html {
@@ -121,9 +136,12 @@
 
 /* Sidebar styles */
 .sidebar {
-  @apply fixed left-0 top-0 h-full bg-card border-r border-border z-50 transition-all duration-300;
+  @apply fixed left-0 top-0 h-full bg-card border-r border-border z-50;
   width: clamp(240px, 16vw, 320px);
   overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Test: Add a visible border to see if sidebar is styled */
+  border: 2px solid blue !important;
 }
 
 .sidebar.collapsed {
@@ -156,13 +174,15 @@
 
 /* Toggle Button */
 .sidebar-toggle {
-  @apply absolute top-4 right-2 p-1 rounded hover:bg-accent transition-colors;
+  @apply absolute top-4 right-2 p-1 rounded hover:bg-accent;
   z-index: 10;
   position: absolute;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .toggle-icon {
-  @apply w-4 h-4 transition-transform;
+  @apply w-4 h-4;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Navigation */
@@ -171,8 +191,9 @@
 }
 
 .sidebar-link {
-  @apply flex items-center gap-3 px-4 py-3 text-muted-foreground hover:text-foreground hover:bg-accent transition-colors rounded-lg;
+  @apply flex items-center gap-3 px-4 py-3 text-muted-foreground hover:text-foreground hover:bg-accent rounded-lg;
   text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .sidebar-link.active {
@@ -205,6 +226,7 @@
 
 .contact-button {
   @apply w-full pixel-button flex items-center justify-center gap-2 py-2 px-3 text-sm;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Language Selector */
@@ -213,7 +235,8 @@
 }
 
 .language-button {
-  @apply w-full flex items-center justify-between p-2 bg-muted rounded text-sm hover:bg-accent transition-colors;
+  @apply w-full flex items-center justify-between p-2 bg-muted rounded text-sm hover:bg-accent;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Footer Links */
@@ -222,8 +245,9 @@
 }
 
 .footer-link {
-  @apply block text-xs text-muted-foreground hover:text-foreground transition-colors;
+  @apply block text-xs text-muted-foreground hover:text-foreground;
   text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Social Links */
@@ -232,8 +256,9 @@
 }
 
 .social-link {
-  @apply p-2 bg-muted rounded hover:bg-accent transition-colors;
+  @apply p-2 bg-muted rounded hover:bg-accent;
   text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Copyright */
@@ -243,20 +268,22 @@
 
 /* Hover expansion for collapsed sidebar */
 .sidebar.collapsed:hover {
-  width: clamp(240px, 16vw, 320px);
-  overflow: visible;
-  z-index: 60;
+  width: clamp(240px, 16vw, 320px) !important;
+  overflow: visible !important;
+  z-index: 60 !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 .sidebar.collapsed:hover .sidebar-container {
-  width: clamp(240px, 16vw, 320px);
-  position: absolute;
-  left: 0;
-  top: 0;
-  background: hsl(var(--card));
-  border-right: 1px solid hsl(var(--border));
-  box-shadow: 4px 0 8px rgba(0, 0, 0, 0.1);
-  z-index: 60;
+  width: clamp(240px, 16vw, 320px) !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  background: hsl(var(--card)) !important;
+  border-right: 1px solid hsl(var(--border)) !important;
+  box-shadow: 4px 0 8px rgba(0, 0, 0, 0.1) !important;
+  z-index: 60 !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 /* Ensure sidebar container has proper positioning */
@@ -271,6 +298,9 @@
   @apply bg-card border-b border-border sticky top-0 z-40;
   width: 100%;
   max-width: 100vw;
+  /* Debug: Make header very obvious */
+  background-color: hsl(var(--card)) !important;
+  border-bottom: 1px solid hsl(var(--border)) !important;
 }
 
 .header .container {
@@ -405,10 +435,11 @@
 }
 
 .game-thumb-link {
-  @apply block relative bg-card border border-border rounded-lg overflow-hidden hover:shadow-lg transition-all duration-200;
+  @apply block relative bg-card border border-border rounded-lg overflow-hidden hover:shadow-lg;
   text-decoration: none;
   color: inherit;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .game-thumb-link:hover {
@@ -500,10 +531,11 @@
 
 /* Better button styling */
 .pixel-button {
-  @apply bg-primary text-primary-foreground hover:bg-primary/90 rounded font-medium transition-colors;
+  @apply bg-primary text-primary-foreground hover:bg-primary/90 rounded font-medium;
   padding: clamp(8px, 1vw, 16px) clamp(16px, 2vw, 32px);
   font-size: clamp(0.875rem, 1.2vw, 1.125rem);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .pixel-button:hover {
