@@ -140,8 +140,7 @@
   width: clamp(240px, 16vw, 320px);
   overflow: hidden;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  /* Test: Add a visible border to see if sidebar is styled */
-  border: 2px solid blue !important;
+
 }
 
 .sidebar.collapsed {

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useSidebar } from '@/contexts/SidebarContext';
 import { useState } from 'react';
-import styles from './Sidebar.module.css';
+
 import {
   Home,
   Clock,
@@ -103,43 +103,152 @@ const socialLinks = [
 export default function Sidebar() {
   const pathname = usePathname();
   const { isCollapsed, toggleSidebar } = useSidebar();
+  const [isHovered, setIsHovered] = useState(false);
+  
+
 
   return (
     <aside
-      className={`${styles.sidebar} ${isCollapsed ? styles.collapsed : ''}`}
+      className={`sidebar ${isCollapsed ? 'collapsed' : ''}`}
+      style={{ 
+        position: 'fixed',
+        left: 0,
+        top: 0,
+        height: '100%',
+        width: isCollapsed && !isHovered ? '64px' : '240px',
+        backgroundColor: 'hsl(var(--card))',
+        borderRight: '1px solid hsl(var(--border))',
+        zIndex: isCollapsed && isHovered ? 60 : 50,
+        overflow: isCollapsed && isHovered ? 'visible' : 'hidden',
+        transition: 'width 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+        boxShadow: isCollapsed && isHovered ? '8px 0 24px rgba(0, 0, 0, 0.15)' : 'none'
+      }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      <div className={styles.sidebarContainer}>
+      <div 
+        className="sidebar-container"
+        style={{
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          padding: '16px 8px',
+          width: isCollapsed && !isHovered ? '64px' : '240px',
+          position: isCollapsed && isHovered ? 'absolute' : 'relative',
+          left: isCollapsed && isHovered ? 0 : 'auto',
+          top: isCollapsed && isHovered ? 0 : 'auto',
+          transition: 'width 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+          overflow: 'hidden',
+          backgroundColor: isCollapsed && isHovered ? 'hsl(var(--card))' : 'transparent',
+          borderRight: isCollapsed && isHovered ? '1px solid hsl(var(--border))' : 'none',
+          borderRadius: isCollapsed && isHovered ? '0 8px 8px 0' : '0',
+          zIndex: isCollapsed && isHovered ? 60 : 'auto'
+        }}
+      >
         {/* Logo */}
-        <div className={styles.sidebarLogo}>
-          <div className={styles.logoIcon}>
-            <span>DWB</span>
+        <div 
+          className="sidebar-logo"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '12px',
+            marginBottom: '24px',
+            position: 'relative',
+            padding: '0 8px'
+          }}
+        >
+          <div 
+            className="logo-icon"
+            style={{
+              width: '32px',
+              height: '32px',
+              backgroundColor: 'hsl(var(--primary))',
+              borderRadius: '8px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexShrink: 0
+            }}
+          >
+            <span style={{ color: 'hsl(var(--primary-foreground))', fontWeight: 'bold', fontSize: '0.875rem' }}>DWB</span>
           </div>
-          {!isCollapsed && (
-            <div className={styles.logoText}>DWB Games</div>
+          {(!isCollapsed || isHovered) && (
+            <div 
+              className="logo-text"
+              style={{
+                fontSize: '1.125rem',
+                fontWeight: 'bold',
+                color: 'hsl(var(--foreground))',
+                transition: 'opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                opacity: 1,
+                visibility: 'visible'
+              }}
+            > GAMES
+            </div>
           )}
         </div>
 
         {/* Collapse Toggle Button */}
         <button
           onClick={toggleSidebar}
-          className={styles.sidebarToggle}
+          className="sidebar-toggle"
           aria-label={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+          style={{
+            position: 'absolute',
+            top: '16px',
+            right: '8px',
+            padding: '4px',
+            borderRadius: '4px',
+            zIndex: 10,
+            transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+            background: 'transparent',
+            border: 'none',
+            cursor: 'pointer'
+          }}
         >
           <svg
-            className={`${styles.toggleIcon} ${isCollapsed ? styles.rotate180 : ''}`}
+            className={`toggle-icon ${isCollapsed ? 'rotate180' : ''}`}
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
+            style={{
+              width: '16px',
+              height: '16px',
+              transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+              transform: isCollapsed ? 'rotate(180deg)' : 'rotate(0deg)'
+            }}
           >
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
 
         {/* Navigation Links */}
-        <nav className={styles.sidebarNav}>
+                 <nav 
+           className="sidebar-nav"
+           style={{
+             flex: 1,
+             display: 'flex',
+             flexDirection: 'column',
+             gap: '4px',
+             overflowY: (!isCollapsed || isHovered) ? 'auto' : 'hidden',
+             overflowX: 'hidden',
+             scrollbarWidth: 'thin',
+             scrollbarColor: 'hsl(var(--muted)) transparent',
+             paddingRight: '4px'
+           }}
+         >
           {sidebarItems.map((item, index) => {
             if (item.type === 'divider') {
-              return <hr key={index} className={styles.sidebarDivider} />;
+              return (
+                <hr 
+                  key={index} 
+                  className="sidebar-divider"
+                  style={{
+                    borderColor: 'hsl(var(--border))',
+                    margin: '8px 16px'
+                  }}
+                />
+              );
             }
 
             const Icon = item.icon;
@@ -150,15 +259,63 @@ export default function Sidebar() {
               <Link
                 key={index}
                 href={isDisabled ? '#' : (item.href || '/')}
-                className={`${styles.sidebarLink} ${isActive ? styles.active : ''} ${isDisabled ? styles.disabled : ''}`}
+                className={`sidebar-link ${isActive ? 'active' : ''} ${isDisabled ? 'disabled' : ''}`}
                 {...(isDisabled && { onClick: (e) => e.preventDefault() })}
                 title={isCollapsed ? item.label : undefined}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '12px',
+                  padding: '12px 16px',
+                  color: isActive ? 'hsl(var(--foreground))' : 'hsl(var(--muted-foreground))',
+                  textDecoration: 'none',
+                  borderRadius: '8px',
+                  transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+                  backgroundColor: isActive ? 'hsl(var(--accent))' : 'transparent',
+                  opacity: isDisabled ? 0.5 : 1,
+                  cursor: isDisabled ? 'not-allowed' : 'pointer'
+                }}
+                onMouseEnter={(e) => {
+                  if (!isActive && !isDisabled) {
+                    e.currentTarget.style.backgroundColor = 'hsl(var(--accent))';
+                    e.currentTarget.style.color = 'hsl(var(--foreground))';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (!isActive && !isDisabled) {
+                    e.currentTarget.style.backgroundColor = 'transparent';
+                    e.currentTarget.style.color = 'hsl(var(--muted-foreground))';
+                  }
+                }}
               >
-                <div className={styles.linkIcon}>
+                <div 
+                  className="link-icon"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '20px',
+                    flexShrink: 0
+                  }}
+                >
                   {Icon && <Icon size={20} />}
                 </div>
-                {!isCollapsed && (
-                  <div className={styles.linkLabel}>{item.label}</div>
+                {(!isCollapsed || isHovered) && (
+                  <div 
+                    className="link-label"
+                    style={{ 
+                      fontSize: '0.875rem',
+                      fontWeight: 500,
+                      color: 'hsl(var(--foreground))',
+                      whiteSpace: 'nowrap',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      opacity: 1,
+                      visibility: 'visible'
+                    }}
+                  >
+                    {item.label}
+                  </div>
                 )}
               </Link>
             );
@@ -166,31 +323,116 @@ export default function Sidebar() {
         </nav>
 
         {/* Contact Button */}
-        <div className={styles.sidebarContact}>
-          <button className={styles.contactButton}>
+        <div 
+          className="sidebar-contact"
+          style={{
+            marginTop: '24px',
+            padding: '0 16px'
+          }}
+        >
+          <button 
+            className="contact-button"
+            style={{
+              width: '100%',
+              backgroundColor: 'hsl(var(--primary))',
+              color: 'hsl(var(--primary-foreground))',
+              border: 'none',
+              borderRadius: '4px',
+              fontWeight: 500,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '8px',
+              padding: '8px 12px',
+              fontSize: '0.875rem',
+              cursor: 'pointer',
+              transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = 'hsl(var(--primary) / 0.9)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'hsl(var(--primary))';
+            }}
+          >
             <Mail size={16} />
-            {!isCollapsed && <span>Contact us</span>}
+            {(!isCollapsed || isHovered) && (
+              <span style={{ opacity: 1, visibility: 'visible' }}>Contact us</span>
+            )}
           </button>
         </div>
 
         {/* Language Selector */}
-        <div className={styles.sidebarLanguage}>
-          <button className={styles.languageButton}>
-            {!isCollapsed && <span>English</span>}
+        <div 
+          className="sidebar-language"
+          style={{
+            marginTop: '16px',
+            padding: '0 16px'
+          }}
+        >
+          <button 
+            className="language-button"
+            style={{
+              width: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              padding: '8px',
+              backgroundColor: 'hsl(var(--muted))',
+              borderRadius: '4px',
+              fontSize: '0.875rem',
+              border: 'none',
+              cursor: 'pointer',
+              transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = 'hsl(var(--accent))';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'hsl(var(--muted))';
+            }}
+          >
+            {(!isCollapsed || isHovered) && (
+              <span style={{ opacity: 1, visibility: 'visible' }}>English</span>
+            )}
             <Globe size={16} />
           </button>
         </div>
 
         {/* Footer Links */}
-        {!isCollapsed && (
-          <div className={styles.sidebarFooterLinks}>
+        {(!isCollapsed || isHovered) && (
+          <div 
+            className="sidebar-footer-links"
+            style={{
+              marginTop: '24px',
+              padding: '0 16px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '8px',
+              opacity: 1,
+              visibility: 'visible'
+            }}
+          >
             {footerLinks.map((link, index) => (
               <Link
                 key={index}
                 href={link.href}
                 target={link.external ? '_blank' : undefined}
                 rel={link.external ? 'noopener noreferrer' : undefined}
-                className={styles.footerLink}
+                className="footer-link"
+                style={{
+                  display: 'block',
+                  fontSize: '0.75rem',
+                  color: 'hsl(var(--muted-foreground))',
+                  textDecoration: 'none',
+                  transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = 'hsl(var(--foreground))';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = 'hsl(var(--muted-foreground))';
+                }}
               >
                 {link.label}
               </Link>
@@ -199,7 +441,16 @@ export default function Sidebar() {
         )}
 
         {/* Social Links */}
-        <div className={styles.sidebarSocialLinks}>
+        <div 
+          className="sidebar-social-links"
+          style={{
+            marginTop: '16px',
+            padding: '0 16px',
+            display: 'flex',
+            gap: '8px',
+            flexWrap: 'wrap'
+          }}
+        >
           {socialLinks.map((social, index) => {
             const Icon = social.icon;
             return (
@@ -208,9 +459,22 @@ export default function Sidebar() {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={styles.socialLink}
+                className="social-link"
                 aria-label={social.label}
                 title={isCollapsed ? social.label : undefined}
+                style={{
+                  padding: '8px',
+                  backgroundColor: 'hsl(var(--muted))',
+                  borderRadius: '4px',
+                  textDecoration: 'none',
+                  transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = 'hsl(var(--accent))';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'hsl(var(--muted))';
+                }}
               >
                 <Icon size={16} />
               </Link>
@@ -219,8 +483,19 @@ export default function Sidebar() {
         </div>
 
         {/* Copyright */}
-        {!isCollapsed && (
-          <div className={styles.sidebarCopyright}>
+        {(!isCollapsed || isHovered) && (
+          <div 
+            className="sidebar-copyright"
+            style={{
+              marginTop: '16px',
+              padding: '0 16px',
+              fontSize: '0.75rem',
+              color: 'hsl(var(--muted-foreground))',
+              textAlign: 'center',
+              opacity: 1,
+              visibility: 'visible'
+            }}
+          >
             © 2025 DWB Games
           </div>
         )}

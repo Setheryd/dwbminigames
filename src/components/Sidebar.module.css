@@ -10,6 +10,8 @@
   overflow: hidden;
   transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
               box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Debug: Add border to see sidebar boundaries */
+  border: 1px solid rgba(0, 255, 0, 0.3);
 }
 
 .sidebar.collapsed {
@@ -24,10 +26,16 @@
   width: 240px;
   position: relative;
   transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
 }
 
 .sidebar.collapsed .sidebarContainer {
   width: 64px;
+}
+
+/* Ensure sidebar container has proper width when expanded */
+.sidebar:not(.collapsed) .sidebarContainer {
+  width: 240px !important;
 }
 
 .sidebarLogo {
@@ -135,6 +143,15 @@
   font-size: 0.875rem;
   font-weight: 500;
   transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: hsl(var(--foreground), #000000);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* Debug: Add background color to see if element is rendered */
+  background-color: rgba(255, 0, 0, 0.1);
+  /* Ensure text is visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .sidebarDivider {
@@ -304,31 +321,68 @@
 .sidebar.collapsed .logoText {
   opacity: 0;
   visibility: hidden;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .sidebar.collapsed .linkLabel {
   opacity: 0;
   visibility: hidden;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .sidebar.collapsed .contactButton span {
   opacity: 0;
   visibility: hidden;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .sidebar.collapsed .languageButton span {
   opacity: 0;
   visibility: hidden;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .sidebar.collapsed .sidebarFooterLinks {
   opacity: 0;
   visibility: hidden;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .sidebar.collapsed .sidebarCopyright {
   opacity: 0;
   visibility: hidden;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Ensure text content is visible when sidebar is expanded */
+.sidebar:not(.collapsed) .logoText {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.sidebar:not(.collapsed) .linkLabel {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.sidebar:not(.collapsed) .contactButton span {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.sidebar:not(.collapsed) .languageButton span {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.sidebar:not(.collapsed) .sidebarFooterLinks {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.sidebar:not(.collapsed) .sidebarCopyright {
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 
