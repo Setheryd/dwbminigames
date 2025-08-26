@@ -1,0 +1,306 @@
+{
+  "playcanvas_examples": {
+    "repo": "playcanvas/engine",
+    "notes": "Examples Browser is MIT; code is open-source. Swap out demo assets if needed. See examples folder.",
+    "license": "MIT",
+    "paths_hint": "examples/src/examples",
+    "links": {
+      "repo": "https://github.com/playcanvas/engine",
+      "examples_browser": "https://playcanvas.github.io/"
+    }
+  },
+  "phaser3_examples": {
+    "repo": "phaserjs/examples",
+    "notes": "Code examples are MIT; many assets are not licensed for redistribution. Replace with your own art/audio.",
+    "license": "MIT (code), assets typically restricted",
+    "links": {
+      "repo": "https://github.com/phaserjs/examples",
+      "labs": "https://labs.phaser.io/"
+    }
+  },
+  "phaser_ce_examples_mirror": {
+    "repo": "samme/phaser-examples-mirror",
+    "notes": "Mirror of Phaser CE examples. Code MIT; media files included without license—do not use them commercially.",
+    "license": "MIT (code), media not licensed",
+    "links": {
+      "repo": "https://github.com/samme/phaser-examples-mirror",
+      "live": "https://samme.github.io/phaser-examples-mirror/"
+    }
+  },
+  "excalibur_samples": {
+    "org": "excaliburjs",
+    "license": "BSD-2-Clause (engine & sample projects)",
+    "samples": [
+      {
+        "owner": "excaliburjs",
+        "name": "sample-platformer",
+        "full_name": "excaliburjs/sample-platformer",
+        "html_url": "https://github.com/excaliburjs/sample-platformer",
+        "license": "NONE",
+        "stars": 16
+      },
+      {
+        "owner": "excaliburjs",
+        "name": "sample-jelly-jumper",
+        "full_name": "excaliburjs/sample-jelly-jumper",
+        "html_url": "https://github.com/excaliburjs/sample-jelly-jumper",
+        "license": "BSD-2-Clause",
+        "stars": 13
+      },
+      {
+        "owner": "excaliburjs",
+        "name": "sample-tiled-vite",
+        "full_name": "excaliburjs/sample-tiled-vite",
+        "html_url": "https://github.com/excaliburjs/sample-tiled-vite",
+        "license": "NONE",
+        "stars": 9
+      },
+      {
+        "owner": "excaliburjs",
+        "name": "sample-excalibird",
+        "full_name": "excaliburjs/sample-excalibird",
+        "html_url": "https://github.com/excaliburjs/sample-excalibird",
+        "license": "BSD-2-Clause",
+        "stars": 5
+      },
+      {
+        "owner": "excaliburjs",
+        "name": "sample-tactics",
+        "full_name": "excaliburjs/sample-tactics",
+        "html_url": "https://github.com/excaliburjs/sample-tactics",
+        "license": "BSD-2-Clause",
+        "stars": 5
+      },
+      {
+        "owner": "excaliburjs",
+        "name": "sample-breakout",
+        "full_name": "excaliburjs/sample-breakout",
+        "html_url": "https://github.com/excaliburjs/sample-breakout",
+        "license": "BSD-2-Clause",
+        "stars": 4
+      },
+      {
+        "owner": "excaliburjs",
+        "name": "sample-grid",
+        "full_name": "excaliburjs/sample-grid",
+        "html_url": "https://github.com/excaliburjs/sample-grid",
+        "license": "BSD-2-Clause",
+        "stars": 4
+      },
+      {
+        "owner": "excaliburjs",
+        "name": "sample-tiled-webpack",
+        "full_name": "excaliburjs/sample-tiled-webpack",
+        "html_url": "https://github.com/excaliburjs/sample-tiled-webpack",
+        "license": "NONE",
+        "stars": 4
+      },
+      {
+        "owner": "excaliburjs",
+        "name": "sample-pathfinding",
+        "full_name": "excaliburjs/sample-pathfinding",
+        "html_url": "https://github.com/excaliburjs/sample-pathfinding",
+        "license": "BSD-2-Clause",
+        "stars": 3
+      },
+      {
+        "owner": "excaliburjs",
+        "name": "sample-physics-server",
+        "full_name": "excaliburjs/sample-physics-server",
+        "html_url": "https://github.com/excaliburjs/sample-physics-server",
+        "license": "NONE",
+        "stars": 3
+      },
+      {
+        "owner": "excaliburjs",
+        "name": "sample-character-controller",
+        "full_name": "excaliburjs/sample-character-controller",
+        "html_url": "https://github.com/excaliburjs/sample-character-controller",
+        "license": "BSD-2-Clause",
+        "stars": 3
+      },
+      {
+        "owner": "excaliburjs",
+        "name": "sample-spritefusion",
+        "full_name": "excaliburjs/sample-spritefusion",
+        "html_url": "https://github.com/excaliburjs/sample-spritefusion",
+        "license": "BSD-2-Clause",
+        "stars": 2
+      },
+      {
+        "owner": "excaliburjs",
+        "name": "sample-html",
+        "full_name": "excaliburjs/sample-html",
+        "html_url": "https://github.com/excaliburjs/sample-html",
+        "license": "BSD-2-Clause",
+        "stars": 2
+      },
+      {
+        "owner": "excaliburjs",
+        "name": "sample-matterjs",
+        "full_name": "excaliburjs/sample-matterjs",
+        "html_url": "https://github.com/excaliburjs/sample-matterjs",
+        "license": "BSD-2-Clause",
+        "stars": 2
+      },
+      {
+        "owner": "excaliburjs",
+        "name": "sample-jsfxr",
+        "full_name": "excaliburjs/sample-jsfxr",
+        "html_url": "https://github.com/excaliburjs/sample-jsfxr",
+        "license": "BSD-2-Clause",
+        "stars": 2
+      },
+      {
+        "owner": "excaliburjs",
+        "name": "sample-tiled-parcel",
+        "full_name": "excaliburjs/sample-tiled-parcel",
+        "html_url": "https://github.com/excaliburjs/sample-tiled-parcel",
+        "license": "NONE",
+        "stars": 2
+      },
+      {
+        "owner": "excaliburjs",
+        "name": "sample-react",
+        "full_name": "excaliburjs/sample-react",
+        "html_url": "https://github.com/excaliburjs/sample-react",
+        "license": "BSD-2-Clause",
+        "stars": 1
+      },
+      {
+        "owner": "excaliburjs",
+        "name": "sample-lighting",
+        "full_name": "excaliburjs/sample-lighting",
+        "html_url": "https://github.com/excaliburjs/sample-lighting",
+        "license": "BSD-2-Clause",
+        "stars": 1
+      },
+      {
+        "owner": "excaliburjs",
+        "name": "sample-shader-grid",
+        "full_name": "excaliburjs/sample-shader-grid",
+        "html_url": "https://github.com/excaliburjs/sample-shader-grid",
+        "license": "NONE",
+        "stars": 1
+      },
+      {
+        "owner": "excaliburjs",
+        "name": "sample-ldtk",
+        "full_name": "excaliburjs/sample-ldtk",
+        "html_url": "https://github.com/excaliburjs/sample-ldtk",
+        "license": "BSD-2-Clause",
+        "stars": 0
+      },
+      {
+        "owner": "excaliburjs",
+        "name": "sample-nwjs",
+        "full_name": "excaliburjs/sample-nwjs",
+        "html_url": "https://github.com/excaliburjs/sample-nwjs",
+        "license": "NONE",
+        "stars": 0
+      },
+      {
+        "owner": "excaliburjs",
+        "name": "sample-fireworks",
+        "full_name": "excaliburjs/sample-fireworks",
+        "html_url": "https://github.com/excaliburjs/sample-fireworks",
+        "license": "BSD-2-Clause",
+        "stars": 0
+      },
+      {
+        "owner": "excaliburjs",
+        "name": "sample-material",
+        "full_name": "excaliburjs/sample-material",
+        "html_url": "https://github.com/excaliburjs/sample-material",
+        "license": "BSD-2-Clause",
+        "stars": 0
+      },
+      {
+        "owner": "excaliburjs",
+        "name": "sample-aseprite-webpack",
+        "full_name": "excaliburjs/sample-aseprite-webpack",
+        "html_url": "https://github.com/excaliburjs/sample-aseprite-webpack",
+        "license": "BSD-2-Clause",
+        "stars": 0
+      },
+      {
+        "owner": "excaliburjs",
+        "name": "sample-async-scene",
+        "full_name": "excaliburjs/sample-async-scene",
+        "html_url": "https://github.com/excaliburjs/sample-async-scene",
+        "license": "NONE",
+        "stars": 0
+      },
+      {
+        "owner": "excaliburjs",
+        "name": "sample-multiplayer-massive-realm",
+        "full_name": "excaliburjs/sample-multiplayer-massive-realm",
+        "html_url": "https://github.com/excaliburjs/sample-multiplayer-massive-realm",
+        "license": "BSD-2-Clause",
+        "stars": 0
+      }
+    ]
+  },
+  "single_repos": [
+    {
+      "owner": "gabrielecirulli",
+      "name": "2048",
+      "full_name": "gabrielecirulli/2048",
+      "license_note": "MIT"
+    },
+    {
+      "owner": "jakesgordon",
+      "name": "javascript-tetris",
+      "full_name": "jakesgordon/javascript-tetris",
+      "license_note": "MIT"
+    },
+    {
+      "owner": "jakesgordon",
+      "name": "javascript-racer",
+      "full_name": "jakesgordon/javascript-racer",
+      "license_note": "MIT"
+    },
+    {
+      "owner": "jakesgordon",
+      "name": "javascript-pong",
+      "full_name": "jakesgordon/javascript-pong",
+      "license_note": "MIT"
+    },
+    {
+      "owner": "BKcore",
+      "name": "HexGL",
+      "full_name": "BKcore/HexGL",
+      "license_note": "MIT (code & resources unless marked otherwise)"
+    },
+    {
+      "owner": "wayou",
+      "name": "t-rex-runner",
+      "full_name": "wayou/t-rex-runner",
+      "license_note": "BSD-3-Clause"
+    },
+    {
+      "owner": "robatron",
+      "name": "sudoku.js",
+      "full_name": "robatron/sudoku.js",
+      "license_note": "MIT"
+    },
+    {
+      "owner": "oakmac",
+      "name": "chessboardjs",
+      "full_name": "oakmac/chessboardjs",
+      "license_note": "MIT"
+    },
+    {
+      "owner": "jhlywa",
+      "name": "chess.js",
+      "full_name": "jhlywa/chess.js",
+      "license_note": "MIT"
+    },
+    {
+      "owner": "mozilla",
+      "name": "BrowserQuest",
+      "full_name": "mozilla/BrowserQuest",
+      "license_note": "MPL-2.0 (code) / CC-BY-SA 3.0 (content)"
+    }
+  ]
+}

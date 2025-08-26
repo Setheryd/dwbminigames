@@ -1,0 +1,202 @@
+[
+  {
+    "id": "notaphplover-one-game",
+    "title": "one game",
+    "license": "Unlicense",
+    "sourceRepo": "https://github.com/notaphplover/one-game",
+    "type": "self-host",
+    "embedUrl": "/games/one-game/index.html"
+  },
+  {
+    "id": "mliebelt-pgn-reader",
+    "title": "pgn reader",
+    "license": "Apache-2.0",
+    "sourceRepo": "https://github.com/mliebelt/pgn-reader",
+    "type": "self-host",
+    "embedUrl": "/games/pgn-reader/index.html"
+  },
+  {
+    "id": "ahmed-m-tawfik-symmetrical-octo-eureka",
+    "title": "symmetrical octo eureka",
+    "license": "Apache-2.0",
+    "sourceRepo": "https://github.com/Ahmed-M-Tawfik/symmetrical-octo-eureka",
+    "type": "self-host",
+    "embedUrl": "/games/symmetrical-octo-eureka/index.html"
+  },
+  {
+    "id": "ireallyhateyou-desktop-destroyer",
+    "title": "desktop destroyer",
+    "license": "Apache-2.0",
+    "sourceRepo": "https://github.com/ireallyhateyou/desktop-destroyer",
+    "type": "self-host",
+    "embedUrl": "/games/desktop-destroyer/index.html"
+  },
+  {
+    "id": "frost-sun-js13kgames-2025",
+    "title": "js13kgames 2025",
+    "license": "MIT",
+    "sourceRepo": "https://github.com/Frost-Sun/js13kgames-2025",
+    "type": "self-host",
+    "embedUrl": "/games/js13kgames-2025/index.html"
+  },
+  {
+    "id": "sanidhyy-apple-clone",
+    "title": "apple clone",
+    "license": "MIT",
+    "sourceRepo": "https://github.com/sanidhyy/apple-clone",
+    "type": "self-host",
+    "embedUrl": "/games/apple-clone/index.html"
+  },
+  {
+    "id": "shashank3736-captcha-canvas",
+    "title": "captcha canvas",
+    "license": "Apache-2.0",
+    "sourceRepo": "https://github.com/Shashank3736/captcha-canvas",
+    "type": "self-host",
+    "embedUrl": "/games/captcha-canvas/index.html"
+  },
+  {
+    "id": "line-abc-def",
+    "title": "abc def",
+    "license": "Apache-2.0",
+    "sourceRepo": "https://github.com/line/abc-def",
+    "type": "self-host",
+    "embedUrl": "/games/abc-def/index.html"
+  },
+  {
+    "id": "tcgdex-cards-database",
+    "title": "cards database",
+    "license": "MIT",
+    "sourceRepo": "https://github.com/tcgdex/cards-database",
+    "type": "self-host",
+    "embedUrl": "/games/cards-database/index.html"
+  },
+  {
+    "id": "zevnda-steam-game-idler",
+    "title": "steam game idler",
+    "license": "MIT",
+    "sourceRepo": "https://github.com/zevnda/steam-game-idler",
+    "type": "self-host",
+    "embedUrl": "/games/steam-game-idler/index.html"
+  },
+  {
+    "id": "paulbjensen-game-rendering-engine",
+    "title": "game rendering engine",
+    "license": "MIT",
+    "sourceRepo": "https://github.com/paulbjensen/game-rendering-engine",
+    "type": "self-host",
+    "embedUrl": "/games/game-rendering-engine/index.html"
+  },
+  {
+    "id": "organicfreshcoffee-server",
+    "title": "server",
+    "license": "Unlicense",
+    "sourceRepo": "https://github.com/organicfreshcoffee/server",
+    "type": "self-host",
+    "embedUrl": "/games/server/index.html"
+  },
+  {
+    "id": "jstanoeva-glimmerwood-dash",
+    "title": "glimmerwood dash",
+    "license": "MIT",
+    "sourceRepo": "https://github.com/JStanoeva/glimmerwood-dash",
+    "type": "self-host",
+    "embedUrl": "/games/glimmerwood-dash/index.html"
+  },
+  {
+    "id": "devmehq-react-qr-code",
+    "title": "react qr code",
+    "license": "MIT",
+    "sourceRepo": "https://github.com/devmehq/react-qr-code",
+    "type": "self-host",
+    "embedUrl": "/games/react-qr-code/index.html"
+  },
+  {
+    "id": "masatomakino-threejs-drag-watcher",
+    "title": "threejs drag watcher",
+    "license": "MIT",
+    "sourceRepo": "https://github.com/MasatoMakino/threejs-drag-watcher",
+    "type": "self-host",
+    "embedUrl": "/games/threejs-drag-watcher/index.html"
+  },
+  {
+    "id": "arianrhodsandlot-retroassembly",
+    "title": "retroassembly",
+    "license": "MIT",
+    "sourceRepo": "https://github.com/arianrhodsandlot/retroassembly",
+    "type": "self-host",
+    "embedUrl": "/games/retroassembly/index.html"
+  },
+  {
+    "id": "mindtwo-app-component",
+    "title": "app component",
+    "license": "MIT",
+    "sourceRepo": "https://github.com/mindtwo/app-component",
+    "type": "self-host",
+    "embedUrl": "/games/app-component/index.html"
+  },
+  {
+    "id": "gdevelopapp-gdevelop-extensions",
+    "title": "GDevelop extensions",
+    "license": "MIT",
+    "sourceRepo": "https://github.com/GDevelopApp/GDevelop-extensions",
+    "type": "self-host",
+    "embedUrl": "/games/gdevelop-extensions/index.html"
+  },
+  {
+    "id": "excalidraw-excalidraw",
+    "title": "excalidraw",
+    "license": "MIT",
+    "sourceRepo": "https://github.com/excalidraw/excalidraw",
+    "type": "self-host",
+    "embedUrl": "/games/excalidraw/index.html"
+  },
+  {
+    "id": "remarkablegames-phaser-template",
+    "title": "phaser template",
+    "license": "MIT",
+    "sourceRepo": "https://github.com/remarkablegames/phaser-template",
+    "type": "self-host",
+    "embedUrl": "/games/phaser-template/index.html"
+  },
+  {
+    "id": "santhoshsks-gameboxxd-frontend",
+    "title": "GameBoxxd frontend",
+    "license": "Apache-2.0",
+    "sourceRepo": "https://github.com/Santhoshsks/GameBoxxd-frontend",
+    "type": "self-host",
+    "embedUrl": "/games/gameboxxd-frontend/index.html"
+  },
+  {
+    "id": "worldql-dreamlab-engine",
+    "title": "dreamlab engine",
+    "license": "Apache-2.0",
+    "sourceRepo": "https://github.com/WorldQL/dreamlab-engine",
+    "type": "self-host",
+    "embedUrl": "/games/dreamlab-engine/index.html"
+  },
+  {
+    "id": "megabyteceer-thing-editor",
+    "title": "thing editor",
+    "license": "MIT",
+    "sourceRepo": "https://github.com/Megabyteceer/thing-editor",
+    "type": "self-host",
+    "embedUrl": "/games/thing-editor/index.html"
+  },
+  {
+    "id": "matej-kotrba-musio",
+    "title": "musio",
+    "license": "Apache-2.0",
+    "sourceRepo": "https://github.com/matej-kotrba/musio",
+    "type": "self-host",
+    "embedUrl": "/games/musio/index.html"
+  },
+  {
+    "id": "bibliothecadao-eternum",
+    "title": "eternum",
+    "license": "MIT",
+    "sourceRepo": "https://github.com/BibliothecaDAO/eternum",
+    "type": "self-host",
+    "embedUrl": "/games/eternum/index.html"
+  }
+]
