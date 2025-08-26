@@ -93,7 +93,12 @@ function _shuffleArray<T>(array: T[]): T[] {
   return shuffled;
 }
 
-export function createOptimalLayout(games: any[], maxItems: number = 24): LayoutRow[] {
+interface Game {
+  id: string;
+  title: string;
+}
+
+export function createOptimalLayout(games: Game[], maxItems: number = 24): LayoutRow[] {
   // Use a deterministic seed for consistent server/client rendering
   const seed = games.length + maxItems; // Simple deterministic seed
   const shuffledGames = shuffleArrayWithSeed(games, seed);
@@ -129,6 +134,8 @@ export function createOptimalLayout(games: any[], maxItems: number = 24): Layout
 
   for (let i = 0; i < availableGames.length; i++) {
     const game = availableGames[i];
+
+    if (!game) continue;
 
     // First, get a random thumbnail to see what orientation we actually have
     const thumbnail = getUniqueThumbnail();

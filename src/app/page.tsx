@@ -17,6 +17,7 @@ import {
   getAvailableGames,
 } from '@/lib/games';
 import { Star, TrendingUp, Clock, Trophy } from 'lucide-react';
+import { Game } from '@/types/game';
 
 export default function Home() {
   const [_selectedCategory, _setSelectedCategory] = useState<string>('all');
@@ -40,8 +41,8 @@ export default function Home() {
     className = '',
   }: {
     title: string;
-    games: any[];
-    icon: any;
+    games: Game[];
+    icon: React.ComponentType<{ size?: number; className?: string }>;
     className?: string;
   }) => (
     <section className={`mb-8 ${className}`}>

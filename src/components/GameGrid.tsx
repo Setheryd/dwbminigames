@@ -4,7 +4,7 @@ import { Game } from '@/types/game';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Star, Clock } from 'lucide-react';
-import { createOptimalLayout, LayoutRow } from '@/lib/imageUtils';
+import { createOptimalLayout, LayoutRow, LayoutItem } from '@/lib/imageUtils';
 import { motion } from 'framer-motion';
 import styles from './GameGrid.module.css';
 
@@ -35,7 +35,7 @@ export default function GameGrid({ games, title, showLabels = false, maxItems = 
     }
   };
 
-  const getItemLayoutClass = (item: any, row: LayoutRow) => {
+  const getItemLayoutClass = (item: LayoutItem, row: LayoutRow) => {
     if (row.type === 'mixed' && row.items.length === 2) {
       if (item.dimensions.orientation === 'portrait') {
         return styles.portrait;
@@ -55,7 +55,7 @@ export default function GameGrid({ games, title, showLabels = false, maxItems = 
       <div className={styles.gameGridWrapper}>
         {layoutRows.map((row, rowIndex) => (
           <motion.div
-            key={rowIndex}
+            key={`row-${rowIndex}`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: rowIndex * 0.1 }}
