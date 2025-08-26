@@ -23,7 +23,7 @@ const mockLeaderboardData: Record<string, LeaderboardEntry[]> = {
   'dwb-runner': [
     { id: '8', playerName: 'SpeedRunner', score: 2340, gameId: 'dwb-runner', timestamp: new Date(), walletAddress: '0x333...' },
     { id: '9', playerName: 'JumpMaster', score: 1890, gameId: 'dwb-runner', timestamp: new Date(), walletAddress: '0x444...' },
-  ]
+  ],
 };
 
 export default function Leaderboard() {
@@ -56,7 +56,7 @@ export default function Leaderboard() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 via-pink-900 to-orange-900 p-4">
       {/* Header */}
-      <motion.header 
+      <motion.header
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         className="flex justify-between items-center mb-8"
@@ -65,17 +65,17 @@ export default function Leaderboard() {
           <ArrowLeft className="inline mr-2" />
           Back to Games
         </Link>
-        
+
         <h1 className="text-4xl font-bold text-white flex items-center">
           <Trophy className="mr-3 text-yellow-400" />
           Leaderboard
         </h1>
-        
-        <div className="w-32"></div> {/* Spacer for centering */}
+
+        <div className="w-32" /> {/* Spacer for centering */}
       </motion.header>
 
       {/* Filters */}
-      <motion.div 
+      <motion.div
         initial={{ x: -50, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ delay: 0.2 }}
@@ -85,7 +85,7 @@ export default function Leaderboard() {
           {/* Game Filter */}
           <div className="flex flex-col">
             <label className="text-white text-sm mb-2 font-bold">Game</label>
-            <select 
+            <select
               value={selectedGame}
               onChange={(e) => setSelectedGame(e.target.value)}
               className="pixel-button px-4 py-2 text-white font-bold rounded-none bg-transparent border-2"
@@ -100,7 +100,7 @@ export default function Leaderboard() {
           {/* Time Filter */}
           <div className="flex flex-col">
             <label className="text-white text-sm mb-2 font-bold">Time Period</label>
-            <select 
+            <select
               value={timeFilter}
                              onChange={(e) => setTimeFilter(e.target.value as 'all' | 'today' | 'week' | 'month')}
               className="pixel-button px-4 py-2 text-white font-bold rounded-none bg-transparent border-2"
@@ -115,7 +115,7 @@ export default function Leaderboard() {
       </motion.div>
 
       {/* Leaderboard */}
-      <motion.div 
+      <motion.div
         initial={{ y: 50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.4 }}
@@ -153,7 +153,7 @@ export default function Leaderboard() {
                       )}
                     </div>
                   </div>
-                  
+
                   <div className="text-right">
                     <p className="text-white font-bold text-xl">{entry.score.toLocaleString()}</p>
                     <p className="text-gray-400 text-sm">
@@ -168,7 +168,7 @@ export default function Leaderboard() {
       </motion.div>
 
       {/* Stats */}
-      <motion.div 
+      <motion.div
         initial={{ y: 50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.6 }}

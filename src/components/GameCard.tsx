@@ -60,14 +60,14 @@ export default function GameCard({ game, onClick, index }: GameCardProps) {
     >
       {/* Game Thumbnail */}
       <div className="relative bg-muted rounded-lg h-32 mb-4 overflow-hidden">
-        <Image 
-          src={game.thumbnail} 
+        <Image
+          src={game.thumbnail}
           alt={game.title}
           fill
           className="object-cover"
           sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw"
         />
-        
+
         {/* Coming Soon Badge */}
         {!game.isAvailable && (
           <div className="absolute top-2 right-2 bg-yellow-500 text-black text-xs px-2 py-1 rounded font-bold">
@@ -83,13 +83,13 @@ export default function GameCard({ game, onClick, index }: GameCardProps) {
           </button>
         </div>
       </div>
-      
+
       {/* Game Title */}
       <h3 className="text-lg font-bold mb-2 line-clamp-1">{game.title}</h3>
-      
+
       {/* Game Description */}
       <p className="text-muted-foreground text-sm mb-3 line-clamp-2">{game.description}</p>
-      
+
       {/* Game Meta Info */}
       <div className="flex flex-wrap gap-2 mb-3">
         <span className={`px-2 py-1 rounded text-xs font-bold text-white ${getDifficultyColor(game.difficulty)}`}>
@@ -103,7 +103,7 @@ export default function GameCard({ game, onClick, index }: GameCardProps) {
           {game.estimatedPlayTime}
         </span>
       </div>
-      
+
       {/* High Score */}
       <div className="flex justify-between items-center mb-3">
         <span className="text-muted-foreground text-sm flex items-center gap-1">
@@ -111,9 +111,9 @@ export default function GameCard({ game, onClick, index }: GameCardProps) {
           High Score: {game.highScore.toLocaleString()}
         </span>
       </div>
-      
+
       {/* Play Button */}
-      <button 
+      <button
         className={`w-full pixel-button py-2 text-white font-bold rounded ${
           !game.isAvailable ? 'opacity-50 cursor-not-allowed' : ''
         }`}

@@ -30,7 +30,7 @@ export const thumbnailDimensions: Record<string, ImageDimensions> = {
   'WhatsApp Image 2024-10-16 at 18.33315.10_804590e3.jpg': { width: 1920, height: 1080, aspectRatio: 16/9, orientation: 'landscape' },
   'WhatsApp Image 2024-10-24 at 19.39.16_df0ad8ererer8.jpg': { width: 1080, height: 1920, aspectRatio: 9/16, orientation: 'portrait' },
   'WhatsApp Image 2024-10-27 at 17.47.4339_6e2ace75.jpg': { width: 1920, height: 1080, aspectRatio: 16/9, orientation: 'landscape' },
-  'WhatsApp Image 2024-11-01 at 18.45.36weqwew_f722efeb.jpg': { width: 1080, height: 1920, aspectRatio: 9/16, orientation: 'portrait' }
+  'WhatsApp Image 2024-11-01 at 18.45.36weqwew_f722efeb.jpg': { width: 1080, height: 1920, aspectRatio: 9/16, orientation: 'portrait' },
 };
 
 export function getImageDimensions(filename: string): ImageDimensions {
@@ -63,26 +63,32 @@ export interface LayoutRow {
 function shuffleArrayWithSeed<T>(array: T[], seed: number): T[] {
   const shuffled = [...array];
   let currentSeed = seed;
-  
+
   // Simple deterministic random number generator
   const random = () => {
     currentSeed = (currentSeed * 9301 + 49297) % 233280;
     return currentSeed / 233280;
   };
-  
+
   for (let i = shuffled.length - 1; i > 0; i--) {
     const j = Math.floor(random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    // Use temporary variable to avoid TypeScript destructuring issues
+    const temp = shuffled[i]!;
+    shuffled[i] = shuffled[j]!;
+    shuffled[j] = temp;
   }
   return shuffled;
 }
 
 // Helper function to shuffle an array (for backward compatibility)
-function shuffleArray<T>(array: T[]): T[] {
+function _shuffleArray<T>(array: T[]): T[] {
   const shuffled = [...array];
   for (let i = shuffled.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    // Use temporary variable to avoid TypeScript destructuring issues
+    const temp = shuffled[i]!;
+    shuffled[i] = shuffled[j]!;
+    shuffled[j] = temp;
   }
   return shuffled;
 }
@@ -95,7 +101,7 @@ export function createOptimalLayout(games: any[], maxItems: number = 24): Layout
   const rows: LayoutRow[] = [];
   let currentRow: LayoutItem[] = [];
   let currentRowHeight = 0;
-  let usedThumbnails = new Set<string>();
+  const usedThumbnails = new Set<string>();
 
   // Helper function to get a unique thumbnail with deterministic selection
   let thumbnailIndex = 0;
@@ -121,18 +127,16 @@ export function createOptimalLayout(games: any[], maxItems: number = 24): Layout
     return fullPath;
   }
 
-
-
   for (let i = 0; i < availableGames.length; i++) {
     const game = availableGames[i];
-    
+
     // First, get a random thumbnail to see what orientation we actually have
     const thumbnail = getUniqueThumbnail();
     const dimensions = getImageDimensionsFromPath(thumbnail);
-    
+
     // Now determine if this orientation works with our current row
     let shouldStartNewRow = false;
-    
+
     if (currentRow.length === 0) {
       // First item in row - any orientation works
       shouldStartNewRow = false;
@@ -188,7 +192,7 @@ export function createOptimalLayout(games: any[], maxItems: number = 24): Layout
       // Row is full (6 items), start new row
       shouldStartNewRow = true;
     }
-    
+
     // If we need to start a new row, do it first
     // But only if we have at least 3 items (minimum requirement)
     if (shouldStartNewRow && currentRow.length >= 3) {
@@ -197,12 +201,12 @@ export function createOptimalLayout(games: any[], maxItems: number = 24): Layout
         height: currentRowHeight,
         type: currentRow.length === 3 ? 'triple' :
               currentRow.length === 4 ? 'quad' :
-              currentRow.length === 5 ? 'quint' : 'sext'
+              currentRow.length === 5 ? 'quint' : 'sext',
       });
       currentRow = [];
       currentRowHeight = 0;
     }
-    
+
     const item: LayoutItem = {
       id: game.id,
       title: game.title,
@@ -211,19 +215,19 @@ export function createOptimalLayout(games: any[], maxItems: number = 24): Layout
       width: 0,
       height: 0,
       row: rows.length,
-      col: currentRow.length
+      col: currentRow.length,
     };
 
     // Add the item to the current row
     currentRow.push(item);
-    
+
     // Update row height based on the new item
     if (dimensions.orientation === 'portrait') {
       currentRowHeight = Math.max(currentRowHeight, 300);
     } else {
       currentRowHeight = Math.max(currentRowHeight, 200);
     }
-    
+
     // If we have 6 items in a row, start a new row (for normal window sizes)
     if (currentRow.length >= 6) {
       rows.push({
@@ -231,7 +235,7 @@ export function createOptimalLayout(games: any[], maxItems: number = 24): Layout
         height: currentRowHeight,
         type: currentRow.length === 3 ? 'triple' :
               currentRow.length === 4 ? 'quad' :
-              currentRow.length === 5 ? 'quint' : 'sext'
+              currentRow.length === 5 ? 'quint' : 'sext',
       });
       currentRow = [];
       currentRowHeight = 0;
@@ -245,7 +249,7 @@ export function createOptimalLayout(games: any[], maxItems: number = 24): Layout
       height: currentRowHeight,
       type: currentRow.length === 3 ? 'triple' :
             currentRow.length === 4 ? 'quad' :
-            currentRow.length === 5 ? 'quint' : 'sext'
+            currentRow.length === 5 ? 'quint' : 'sext',
     });
   }
 

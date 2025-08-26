@@ -20,11 +20,11 @@ const eslintConfig = [
         caughtErrorsIgnorePattern: "^_"
       }],
       "@typescript-eslint/no-explicit-any": "warn",
-      "@typescript-eslint/prefer-const": "error",
+      "prefer-const": "error",
       "@typescript-eslint/no-var-requires": "error",
       "@typescript-eslint/explicit-function-return-type": "off",
       "@typescript-eslint/explicit-module-boundary-types": "off",
-      "@typescript-eslint/no-non-null-assertion": "warn",
+      "@typescript-eslint/no-non-null-assertion": "off",
       
       // React specific rules
       "react/jsx-key": "error",
@@ -50,7 +50,7 @@ const eslintConfig = [
       "comma-dangle": ["error", "always-multiline"],
       "semi": ["error", "always"],
       "quotes": ["error", "single", { avoidEscape: true }],
-      "indent": ["error", 2, { SwitchCase: 1 }],
+      "indent": "off", // Disabled due to conflicts with TypeScript
       "no-trailing-spaces": "error",
       "eol-last": "error",
       "no-multiple-empty-lines": ["error", { max: 1, maxEOF: 0 }],

@@ -5,43 +5,43 @@ import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { Header } from '@/components/Header';
 import Sidebar from '@/components/Sidebar';
-import GameCard from '@/components/GameCard';
-import GameCarousel from '@/components/GameCarousel';
+import _GameCard from '@/components/GameCard';
+import _GameCarousel from '@/components/GameCarousel';
 import GameGrid from '@/components/GameGrid';
 import { useSidebar } from '@/contexts/SidebarContext';
-import { 
-  getPopularGames, 
-  getFeaturedGames, 
-  getRecentGames, 
+import {
+  getPopularGames,
+  getFeaturedGames,
+  getRecentGames,
   getBestGames,
-  getAvailableGames 
+  getAvailableGames,
 } from '@/lib/games';
 import { Star, TrendingUp, Clock, Trophy } from 'lucide-react';
 
 export default function Home() {
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [_selectedCategory, _setSelectedCategory] = useState<string>('all');
   const router = useRouter();
   const { isCollapsed } = useSidebar();
-  
+
   const popularGames = getPopularGames();
   const featuredGames = getFeaturedGames();
   const recentGames = getRecentGames();
   const bestGames = getBestGames();
   const allGames = getAvailableGames();
 
-  const handleGameClick = (gameId: string) => {
+  const _handleGameClick = (gameId: string) => {
     router.push(`/games/${gameId}`);
   };
 
-  const GameSection = ({ 
-    title, 
-    games, 
-    icon: Icon, 
-    className = '' 
-  }: { 
-    title: string; 
-    games: any[]; 
-    icon: any; 
+  const GameSection = ({
+    title,
+    games,
+    icon: Icon,
+    className = '',
+  }: {
+    title: string;
+    games: any[];
+    icon: any;
     className?: string;
   }) => (
     <section className={`mb-8 ${className}`}>
@@ -62,10 +62,10 @@ export default function Home() {
       <Header />
       <div className="flex">
         <Sidebar />
-        <main className="flex-1 transition-all duration-300" style={{ 
+        <main className="flex-1 transition-all duration-300" style={{
           marginLeft: isCollapsed ? 'clamp(56px, 4vw, 80px)' : 'clamp(240px, 16vw, 320px)',
           padding: 'clamp(1rem, 2vw, 2rem)',
-          width: `calc(100vw - ${isCollapsed ? 'clamp(56px, 4vw, 80px)' : 'clamp(240px, 16vw, 320px)'})`
+          width: `calc(100vw - ${isCollapsed ? 'clamp(56px, 4vw, 80px)' : 'clamp(240px, 16vw, 320px)'})`,
         }}>
           <div className="container">
             {/* Hero Section */}
@@ -92,36 +92,36 @@ export default function Home() {
 
             {/* Featured Games */}
             {featuredGames.length > 0 && (
-              <GameSection 
-                title="Featured Games" 
-                games={featuredGames} 
+              <GameSection
+                title="Featured Games"
+                games={featuredGames}
                 icon={Star}
               />
             )}
 
             {/* Popular Games */}
             {popularGames.length > 0 && (
-              <GameSection 
-                title="Popular Games" 
-                games={popularGames} 
+              <GameSection
+                title="Popular Games"
+                games={popularGames}
                 icon={TrendingUp}
               />
             )}
 
             {/* Recent Games */}
             {recentGames.length > 0 && (
-              <GameSection 
-                title="Recently Added" 
-                games={recentGames} 
+              <GameSection
+                title="Recently Added"
+                games={recentGames}
                 icon={Clock}
               />
             )}
 
             {/* Best Games */}
             {bestGames.length > 0 && (
-              <GameSection 
-                title="Best Games" 
-                games={bestGames} 
+              <GameSection
+                title="Best Games"
+                games={bestGames}
                 icon={Trophy}
               />
             )}

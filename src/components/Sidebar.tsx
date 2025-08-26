@@ -5,14 +5,14 @@ import { usePathname } from 'next/navigation';
 import { useSidebar } from '@/contexts/SidebarContext';
 import { useState } from 'react';
 import styles from './Sidebar.module.css';
-import { 
-  Home, 
-  Clock, 
-  Star, 
-  TrendingUp, 
-  RefreshCw, 
-  Crown, 
-  Users, 
+import {
+  Home,
+  Clock,
+  Star,
+  TrendingUp,
+  RefreshCw,
+  Crown,
+  Users,
   Gamepad2,
   Target,
   Car,
@@ -20,8 +20,7 @@ import {
   Zap,
   Shield,
   Heart,
-  Trophy,
-  Settings,
+
   Mail,
   Globe,
   Github,
@@ -40,7 +39,7 @@ import {
   UserCheck,
   Brain,
   Castle,
-  Tags
+  Tags,
 } from 'lucide-react';
 
 const sidebarItems = [
@@ -105,12 +104,12 @@ export default function Sidebar() {
   const pathname = usePathname();
   const { isCollapsed, toggleSidebar } = useSidebar();
   const [isHovered, setIsHovered] = useState(false);
-  
+
   // Show expanded state when hovering over collapsed sidebar
   const shouldShowExpanded = isCollapsed && isHovered;
 
   return (
-    <aside 
+    <aside
       className={`${styles.sidebar} ${isCollapsed ? styles.collapsed : ''}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -125,17 +124,17 @@ export default function Sidebar() {
             <div className={styles.logoText}>DWB Games</div>
           )}
         </div>
-        
+
         {/* Collapse Toggle Button */}
-        <button 
+        <button
           onClick={toggleSidebar}
           className={styles.sidebarToggle}
-          aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+          aria-label={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
         >
-          <svg 
+          <svg
             className={`${styles.toggleIcon} ${isCollapsed ? styles.rotate180 : ''}`}
-            fill="none" 
-            stroke="currentColor" 
+            fill="none"
+            stroke="currentColor"
             viewBox="0 0 24 24"
           >
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -156,9 +155,9 @@ export default function Sidebar() {
             return (
               <Link
                 key={index}
-                href={isDisabled ? '#' : item.href}
+                href={isDisabled ? '#' : (item.href || '/')}
                 className={`${styles.sidebarLink} ${isActive ? styles.active : ''} ${isDisabled ? styles.disabled : ''}`}
-                onClick={isDisabled ? (e) => e.preventDefault() : undefined}
+                {...(isDisabled && { onClick: (e) => e.preventDefault() })}
                 title={isCollapsed && !shouldShowExpanded ? item.label : undefined}
               >
                 <div className={styles.linkIcon}>

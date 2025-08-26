@@ -15,17 +15,17 @@ export default function GamePage() {
   const gameId = params.id as string;
   const game = getGameById(gameId);
   const { isCollapsed } = useSidebar();
-  
+
   // Get related games (same category, excluding current game)
   const relatedGames = getGamesByCategory(game?.category || '')
     .filter(g => g.id !== gameId)
     .slice(0, 10);
-  
+
   // Get more games if we don't have enough related games
   const allGames = getAvailableGames()
     .filter(g => g.id !== gameId)
     .slice(0, 10);
-  
+
   const gamesToShow = relatedGames.length > 0 ? relatedGames : allGames;
 
   if (!game) {
@@ -34,10 +34,10 @@ export default function GamePage() {
         <Header />
         <div className="flex">
           <Sidebar />
-          <main className="flex-1 transition-all duration-300" style={{ 
+          <main className="flex-1 transition-all duration-300" style={{
             marginLeft: isCollapsed ? 'clamp(56px, 4vw, 80px)' : 'clamp(240px, 16vw, 320px)',
             padding: 'clamp(1rem, 2vw, 2rem)',
-            width: `calc(100vw - ${isCollapsed ? 'clamp(56px, 4vw, 80px)' : 'clamp(240px, 16vw, 320px)'})`
+            width: `calc(100vw - ${isCollapsed ? 'clamp(56px, 4vw, 80px)' : 'clamp(240px, 16vw, 320px)'})`,
           }}>
             <div className="container text-center">
               <h1 className="text-2xl font-bold mb-4">Game not found</h1>
@@ -57,10 +57,10 @@ export default function GamePage() {
       <Header />
       <div className="flex">
         <Sidebar />
-        <main className="flex-1 transition-all duration-300" style={{ 
+        <main className="flex-1 transition-all duration-300" style={{
           marginLeft: isCollapsed ? 'clamp(56px, 4vw, 80px)' : 'clamp(240px, 16vw, 320px)',
           padding: 'clamp(1rem, 2vw, 2rem)',
-          width: `calc(100vw - ${isCollapsed ? 'clamp(56px, 4vw, 80px)' : 'clamp(240px, 16vw, 320px)'})`
+          width: `calc(100vw - ${isCollapsed ? 'clamp(56px, 4vw, 80px)' : 'clamp(240px, 16vw, 320px)'})`,
         }}>
           <div className="container">
             {/* Back Button */}
@@ -72,12 +72,12 @@ export default function GamePage() {
                          {/* Game Details */}
              <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
                {/* Game Image */}
-               <div className="relative bg-muted rounded-lg overflow-hidden" style={{ 
+               <div className="relative bg-muted rounded-lg overflow-hidden" style={{
                  height: 'clamp(300px, 40vh, 600px)',
-                 minHeight: '300px'
+                 minHeight: '300px',
                }}>
-                 <Image 
-                   src={game.thumbnail} 
+                 <Image
+                   src={game.thumbnail}
                    alt={game.title}
                    fill
                    className="object-cover"
@@ -115,9 +115,9 @@ export default function GamePage() {
                 </div>
 
                                  {/* Play Button */}
-                 <button className="w-full pixel-button flex items-center justify-center gap-2" style={{ 
+                 <button className="w-full pixel-button flex items-center justify-center gap-2" style={{
                    padding: 'clamp(12px, 2vw, 20px) clamp(16px, 3vw, 32px)',
-                   fontSize: 'clamp(1rem, 1.5vw, 1.25rem)'
+                   fontSize: 'clamp(1rem, 1.5vw, 1.25rem)',
                  }}>
                    <Play size={24} />
                    Play Now
@@ -127,7 +127,7 @@ export default function GamePage() {
                 <div className="bg-muted p-4 rounded-lg">
                   <h3 className="font-bold mb-2">About this game</h3>
                   <p className="text-muted-foreground text-sm">
-                    This is a placeholder for game-specific information. In a real implementation, 
+                    This is a placeholder for game-specific information. In a real implementation,
                     this would contain detailed game instructions, controls, and other relevant information.
                   </p>
                 </div>

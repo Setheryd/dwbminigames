@@ -21,7 +21,7 @@ export const drawDwbImage = (
 	y: number,
 	width: number,
 	height: number,
-	rotation: number = 0
+	rotation: number = 0,
 ) => {
 	if (!cachedDwbImage) return;
 	ctx.save();
@@ -30,4 +30,3 @@ export const drawDwbImage = (
 	ctx.drawImage(cachedDwbImage, -width / 2, -height / 2, width, height);
 	ctx.restore();
 };
-

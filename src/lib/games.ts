@@ -14,7 +14,7 @@ export const games: Game[] = [
     isPopular: true,
     isFeatured: true,
     isRecent: true,
-    isBest: true
+    isBest: true,
   },
   {
     id: 'flappy-dwb',
@@ -29,7 +29,7 @@ export const games: Game[] = [
     isPopular: true,
     isFeatured: true,
     isRecent: false,
-    isBest: false
+    isBest: false,
   },
   {
     id: 'kitty-cannon-dwb',
@@ -44,7 +44,7 @@ export const games: Game[] = [
     isPopular: false,
     isFeatured: false,
     isRecent: true,
-    isBest: false
+    isBest: false,
   },
   {
     id: 'dwb-runner',
@@ -59,7 +59,7 @@ export const games: Game[] = [
     isPopular: true,
     isFeatured: false,
     isRecent: false,
-    isBest: true
+    isBest: true,
   },
   {
     id: 'abduction-game',
@@ -74,7 +74,7 @@ export const games: Game[] = [
     isPopular: false,
     isFeatured: true,
     isRecent: false,
-    isBest: false
+    isBest: false,
   },
   {
     id: 'aspiring-hero',
@@ -89,7 +89,7 @@ export const games: Game[] = [
     isPopular: true,
     isFeatured: false,
     isRecent: true,
-    isBest: false
+    isBest: false,
   },
   {
     id: 'dead-piccolo',
@@ -104,7 +104,7 @@ export const games: Game[] = [
     isPopular: false,
     isFeatured: false,
     isRecent: false,
-    isBest: false
+    isBest: false,
   },
   {
     id: 'king-kong',
@@ -119,7 +119,7 @@ export const games: Game[] = [
     isPopular: true,
     isFeatured: true,
     isRecent: false,
-    isBest: false
+    isBest: false,
   },
   {
     id: 'power-rush',
@@ -134,7 +134,7 @@ export const games: Game[] = [
     isPopular: false,
     isFeatured: false,
     isRecent: true,
-    isBest: false
+    isBest: false,
   },
   {
     id: 'squishy-world',
@@ -149,7 +149,7 @@ export const games: Game[] = [
     isPopular: false,
     isFeatured: false,
     isRecent: false,
-    isBest: false
+    isBest: false,
   },
   {
     id: 'pito-adventure',
@@ -164,7 +164,7 @@ export const games: Game[] = [
     isPopular: false,
     isFeatured: false,
     isRecent: false,
-    isBest: false
+    isBest: false,
   },
   {
     id: 'placeholder-1',
@@ -179,7 +179,7 @@ export const games: Game[] = [
     isPopular: false,
     isFeatured: false,
     isRecent: false,
-    isBest: false
+    isBest: false,
   },
   {
     id: 'placeholder-2',
@@ -194,7 +194,7 @@ export const games: Game[] = [
     isPopular: false,
     isFeatured: false,
     isRecent: false,
-    isBest: false
+    isBest: false,
   },
   {
     id: 'placeholder-3',
@@ -209,7 +209,7 @@ export const games: Game[] = [
     isPopular: false,
     isFeatured: false,
     isRecent: false,
-    isBest: false
+    isBest: false,
   },
   {
     id: 'placeholder-4',
@@ -224,7 +224,7 @@ export const games: Game[] = [
     isPopular: false,
     isFeatured: false,
     isRecent: false,
-    isBest: false
+    isBest: false,
   },
   {
     id: 'placeholder-5',
@@ -239,7 +239,7 @@ export const games: Game[] = [
     isPopular: false,
     isFeatured: false,
     isRecent: false,
-    isBest: false
+    isBest: false,
   },
   {
     id: 'whatsapp-game-1',
@@ -254,7 +254,7 @@ export const games: Game[] = [
     isPopular: false,
     isFeatured: false,
     isRecent: false,
-    isBest: false
+    isBest: false,
   },
   {
     id: 'whatsapp-game-2',
@@ -269,7 +269,7 @@ export const games: Game[] = [
     isPopular: false,
     isFeatured: false,
     isRecent: false,
-    isBest: false
+    isBest: false,
   },
   {
     id: 'whatsapp-game-3',
@@ -284,7 +284,7 @@ export const games: Game[] = [
     isPopular: false,
     isFeatured: false,
     isRecent: false,
-    isBest: false
+    isBest: false,
   },
   {
     id: 'whatsapp-game-4',
@@ -299,7 +299,7 @@ export const games: Game[] = [
     isPopular: false,
     isFeatured: false,
     isRecent: false,
-    isBest: false
+    isBest: false,
   },
   {
     id: 'whatsapp-game-5',
@@ -314,7 +314,7 @@ export const games: Game[] = [
     isPopular: false,
     isFeatured: false,
     isRecent: false,
-    isBest: false
+    isBest: false,
   },
   {
     id: 'whatsapp-game-6',
@@ -329,7 +329,7 @@ export const games: Game[] = [
     isPopular: false,
     isFeatured: false,
     isRecent: false,
-    isBest: false
+    isBest: false,
   },
   {
     id: 'untitled-game-1',
@@ -344,7 +344,7 @@ export const games: Game[] = [
     isPopular: false,
     isFeatured: false,
     isRecent: false,
-    isBest: false
+    isBest: false,
   },
   {
     id: 'untitled-game-2',
@@ -359,8 +359,8 @@ export const games: Game[] = [
     isPopular: false,
     isFeatured: false,
     isRecent: false,
-    isBest: false
-  }
+    isBest: false,
+  },
 ];
 
 export const getGameById = (id: string): Game | undefined => {

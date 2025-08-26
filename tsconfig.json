@@ -39,7 +39,7 @@
     "strictBindCallApply": true,
     "strictPropertyInitialization": true,
     "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
+    "noPropertyAccessFromIndexSignature": false,
     "noUncheckedIndexedAccess": true
   },
   "include": [

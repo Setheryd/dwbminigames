@@ -51,7 +51,7 @@ export default function GameGrid({ games, title, showLabels = false, maxItems = 
       {title && (
         <h2 className="text-xl font-bold mb-4 px-4">{title}</h2>
       )}
-      
+
       <div className={styles.gameGridWrapper}>
         {layoutRows.map((row, rowIndex) => (
           <motion.div
@@ -70,7 +70,7 @@ export default function GameGrid({ games, title, showLabels = false, maxItems = 
                 transition={{ delay: rowIndex * 0.1 + itemIndex * 0.05 }}
                 className={`${styles.gameGridItem} ${getItemLayoutClass(item, row)}`}
               >
-                <Link 
+                <Link
                   href={`/games/${item.id}`}
                   className={styles.gameGridLink}
                 >
@@ -94,24 +94,24 @@ export default function GameGrid({ games, title, showLabels = false, maxItems = 
                       )}
                     </>
                   )}
-                  
+
                   {/* Game Title */}
                   <div className={styles.gameGridTitle}>
                     {item.title}
                   </div>
-                  
+
                   {/* Game Image */}
                   <div className={styles.gameGridImageContainer}>
-                    <Image 
-                      src={item.thumbnail} 
+                    <Image
+                      src={item.thumbnail}
                       alt={item.title}
                       fill
                       className={styles.gameGridImage}
-                      loading={rowIndex < 2 ? "eager" : "lazy"}
+                      loading={rowIndex < 2 ? 'eager' : 'lazy'}
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                   </div>
-                  
+
                   {/* Game Meta Info */}
                   <div className={styles.gameGridMeta}>
                     <div className={styles.gameGridMetaContent}>

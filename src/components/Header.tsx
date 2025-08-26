@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { Search, Users, Heart, LogIn, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import styles from './Header.module.css';
@@ -97,4 +96,3 @@ export function Header() {
     </header>
   );
 }
-

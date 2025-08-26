@@ -17,12 +17,12 @@ export default function GameCarousel({ games, title, showLabels = false }: GameC
       {title && (
         <h2 className="text-xl font-bold mb-4 px-4">{title}</h2>
       )}
-      
+
              <div className="game-carousel-wrapper">
          <ul className="game-carousel-list scrollbar-hide">
           {games.map((game, index) => (
             <li key={game.id} className="game-carousel-item">
-              <Link 
+              <Link
                 href={`/games/${game.id}`}
                 className="game-thumb-link"
               >
@@ -46,25 +46,25 @@ export default function GameCarousel({ games, title, showLabels = false }: GameC
                     )}
                   </>
                 )}
-                
+
                 {/* Game Title */}
                 <div className="game-thumb-title">
                   {game.title}
                 </div>
-                
+
                 {/* Game Image */}
                 <div className="game-thumb-image-container">
-                  <Image 
-                    src={game.thumbnail} 
+                  <Image
+                    src={game.thumbnail}
                     alt={game.title}
                     width={273}
                     height={154}
                     className="game-thumb-image"
-                    loading={index < 6 ? "eager" : "lazy"}
+                    loading={index < 6 ? 'eager' : 'lazy'}
                     sizes="(max-width: 768px) 168px, 273px"
                   />
                 </div>
-                
+
                 {/* Game Meta Info */}
                 <div className="game-thumb-meta">
                   <div className="flex items-center gap-2 text-xs text-muted-foreground">
