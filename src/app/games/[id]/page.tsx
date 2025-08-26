@@ -34,7 +34,10 @@ export default function GamePage() {
         <Header />
         <div className="flex">
           <Sidebar />
-          <main className={`flex-1 p-6 transition-all duration-300 ${isCollapsed ? 'ml-16' : 'ml-64'}`} style={{ marginLeft: isCollapsed ? '64px' : '256px' }}>
+          <main className="flex-1 p-6 transition-all duration-300" style={{ 
+            marginLeft: isCollapsed ? 'clamp(56px, 4vw, 80px)' : 'clamp(240px, 16vw, 320px)',
+            padding: 'clamp(1rem, 2vw, 2rem)'
+          }}>
             <div className="container text-center">
               <h1 className="text-2xl font-bold mb-4">Game not found</h1>
               <Link href="/" className="pixel-button">
@@ -53,7 +56,10 @@ export default function GamePage() {
       <Header />
       <div className="flex">
         <Sidebar />
-        <main className={`flex-1 p-6 transition-all duration-300 ${isCollapsed ? 'ml-16' : 'ml-64'}`} style={{ marginLeft: isCollapsed ? '64px' : '256px' }}>
+        <main className="flex-1 p-6 transition-all duration-300" style={{ 
+          marginLeft: isCollapsed ? 'clamp(56px, 4vw, 80px)' : 'clamp(240px, 16vw, 320px)',
+          padding: 'clamp(1rem, 2vw, 2rem)'
+        }}>
           <div className="container">
             {/* Back Button */}
             <Link href="/" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-6">
@@ -61,25 +67,28 @@ export default function GamePage() {
               Back to Games
             </Link>
 
-            {/* Game Details */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {/* Game Image */}
-              <div className="relative bg-muted rounded-lg h-96 overflow-hidden">
-                <Image 
-                  src={game.thumbnail} 
-                  alt={game.title}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-              </div>
+                         {/* Game Details */}
+             <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
+               {/* Game Image */}
+               <div className="relative bg-muted rounded-lg overflow-hidden" style={{ 
+                 height: 'clamp(300px, 40vh, 600px)',
+                 minHeight: '300px'
+               }}>
+                 <Image 
+                   src={game.thumbnail} 
+                   alt={game.title}
+                   fill
+                   className="object-cover"
+                   sizes="(max-width: 1280px) 100vw, 50vw"
+                 />
+               </div>
 
-              {/* Game Info */}
-              <div className="space-y-6">
-                <div>
-                  <h1 className="text-4xl font-bold mb-2">{game.title}</h1>
-                  <p className="text-muted-foreground text-lg">{game.description}</p>
-                </div>
+                             {/* Game Info */}
+               <div className="space-y-6">
+                 <div>
+                   <h1 className="font-bold mb-2" style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}>{game.title}</h1>
+                   <p className="text-muted-foreground" style={{ fontSize: 'clamp(1rem, 1.5vw, 1.25rem)' }}>{game.description}</p>
+                 </div>
 
                 {/* Game Meta */}
                 <div className="flex flex-wrap gap-4">
@@ -103,11 +112,14 @@ export default function GamePage() {
                   </span>
                 </div>
 
-                {/* Play Button */}
-                <button className="w-full pixel-button text-lg py-4 flex items-center justify-center gap-2">
-                  <Play size={24} />
-                  Play Now
-                </button>
+                                 {/* Play Button */}
+                 <button className="w-full pixel-button flex items-center justify-center gap-2" style={{ 
+                   padding: 'clamp(12px, 2vw, 20px) clamp(16px, 3vw, 32px)',
+                   fontSize: 'clamp(1rem, 1.5vw, 1.25rem)'
+                 }}>
+                   <Play size={24} />
+                   Play Now
+                 </button>
 
                 {/* Additional Info */}
                 <div className="bg-muted p-4 rounded-lg">
