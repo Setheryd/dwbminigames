@@ -8,7 +8,8 @@
   z-index: 50;
   width: 240px;
   overflow: hidden;
-  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .sidebar.collapsed {
@@ -22,7 +23,7 @@
   padding: 16px 8px;
   width: 240px;
   position: relative;
-  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .sidebar.collapsed .sidebarContainer {
@@ -59,6 +60,7 @@
   font-size: 1.125rem;
   font-weight: bold;
   color: hsl(var(--foreground));
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .sidebarToggle {
@@ -132,6 +134,7 @@
 .linkLabel {
   font-size: 0.875rem;
   font-weight: 500;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .sidebarDivider {
@@ -161,6 +164,10 @@
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.contactButton span {
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .contactButton:hover {
   background-color: hsl(var(--primary) / 0.9);
 }
@@ -184,6 +191,10 @@
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.languageButton span {
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .languageButton:hover {
   background-color: hsl(var(--accent));
 }
@@ -194,6 +205,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .footerLink {
@@ -234,6 +246,7 @@
   font-size: 0.75rem;
   color: hsl(var(--muted-foreground));
   text-align: center;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Hover expansion for collapsed sidebar */
@@ -241,6 +254,7 @@
   width: 240px !important;
   overflow: visible !important;
   z-index: 60 !important;
+  box-shadow: 8px 0 24px rgba(0, 0, 0, 0.15) !important;
 }
 
 .sidebar.collapsed:hover .sidebarContainer {
@@ -250,6 +264,71 @@
   top: 0 !important;
   background: hsl(var(--card)) !important;
   border-right: 1px solid hsl(var(--border)) !important;
-  box-shadow: 4px 0 8px rgba(0, 0, 0, 0.1) !important;
+  box-shadow: none !important;
   z-index: 60 !important;
+  border-radius: 0 8px 8px 0 !important;
 }
+
+/* Show text content on hover when collapsed */
+.sidebar.collapsed:hover .logoText {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.sidebar.collapsed:hover .linkLabel {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.sidebar.collapsed:hover .contactButton span {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.sidebar.collapsed:hover .languageButton span {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.sidebar.collapsed:hover .sidebarFooterLinks {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.sidebar.collapsed:hover .sidebarCopyright {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Hide text content when collapsed (not hovering) */
+.sidebar.collapsed .logoText {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.sidebar.collapsed .linkLabel {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.sidebar.collapsed .contactButton span {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.sidebar.collapsed .languageButton span {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.sidebar.collapsed .sidebarFooterLinks {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.sidebar.collapsed .sidebarCopyright {
+  opacity: 0;
+  visibility: hidden;
+}
+
+

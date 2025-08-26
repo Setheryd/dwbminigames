@@ -103,16 +103,10 @@ const socialLinks = [
 export default function Sidebar() {
   const pathname = usePathname();
   const { isCollapsed, toggleSidebar } = useSidebar();
-  const [isHovered, setIsHovered] = useState(false);
-
-  // Show expanded state when hovering over collapsed sidebar
-  const shouldShowExpanded = isCollapsed && isHovered;
 
   return (
     <aside
       className={`${styles.sidebar} ${isCollapsed ? styles.collapsed : ''}`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
       <div className={styles.sidebarContainer}>
         {/* Logo */}
@@ -120,7 +114,7 @@ export default function Sidebar() {
           <div className={styles.logoIcon}>
             <span>DWB</span>
           </div>
-          {(!isCollapsed || shouldShowExpanded) && (
+          {!isCollapsed && (
             <div className={styles.logoText}>DWB Games</div>
           )}
         </div>
@@ -158,12 +152,12 @@ export default function Sidebar() {
                 href={isDisabled ? '#' : (item.href || '/')}
                 className={`${styles.sidebarLink} ${isActive ? styles.active : ''} ${isDisabled ? styles.disabled : ''}`}
                 {...(isDisabled && { onClick: (e) => e.preventDefault() })}
-                title={isCollapsed && !shouldShowExpanded ? item.label : undefined}
+                title={isCollapsed ? item.label : undefined}
               >
                 <div className={styles.linkIcon}>
                   {Icon && <Icon size={20} />}
                 </div>
-                {(!isCollapsed || shouldShowExpanded) && (
+                {!isCollapsed && (
                   <div className={styles.linkLabel}>{item.label}</div>
                 )}
               </Link>
@@ -175,20 +169,20 @@ export default function Sidebar() {
         <div className={styles.sidebarContact}>
           <button className={styles.contactButton}>
             <Mail size={16} />
-            {(!isCollapsed || shouldShowExpanded) && <span>Contact us</span>}
+            {!isCollapsed && <span>Contact us</span>}
           </button>
         </div>
 
         {/* Language Selector */}
         <div className={styles.sidebarLanguage}>
           <button className={styles.languageButton}>
-            {(!isCollapsed || shouldShowExpanded) && <span>English</span>}
+            {!isCollapsed && <span>English</span>}
             <Globe size={16} />
           </button>
         </div>
 
         {/* Footer Links */}
-        {(!isCollapsed || shouldShowExpanded) && (
+        {!isCollapsed && (
           <div className={styles.sidebarFooterLinks}>
             {footerLinks.map((link, index) => (
               <Link
@@ -216,7 +210,7 @@ export default function Sidebar() {
                 rel="noopener noreferrer"
                 className={styles.socialLink}
                 aria-label={social.label}
-                title={isCollapsed && !shouldShowExpanded ? social.label : undefined}
+                title={isCollapsed ? social.label : undefined}
               >
                 <Icon size={16} />
               </Link>
@@ -225,7 +219,7 @@ export default function Sidebar() {
         </div>
 
         {/* Copyright */}
-        {(!isCollapsed || shouldShowExpanded) && (
+        {!isCollapsed && (
           <div className={styles.sidebarCopyright}>
             © 2025 DWB Games
           </div>

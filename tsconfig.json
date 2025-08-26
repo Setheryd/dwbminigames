@@ -40,7 +40,6 @@
     "strictPropertyInitialization": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": false,
-    "noUncheckedIndexedAccess": true
   },
   "include": [
     "next-env.d.ts",
