@@ -74,7 +74,11 @@ src/
 │   ├── layout.tsx         # Root layout
 │   └── page.tsx           # Home page
 ├── components/            # Reusable components
-│   └── GameCard.tsx       # Game card component
+│   ├── GameCard.tsx       # Game card component
+│   ├── GameCarousel.tsx   # Carousel of games
+│   ├── GameGrid.tsx       # Grid layout for games
+│   ├── Header.tsx         # Site header
+│   └── Sidebar.tsx        # Sidebar navigation
 ├── lib/                   # Utility functions
 │   └── games.ts           # Game data and utilities
 └── types/                 # TypeScript type definitions
