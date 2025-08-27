@@ -361,6 +361,21 @@ export const games: Game[] = [
     isRecent: false,
     isBest: false,
   },
+  {
+    id: 'example-game',
+    title: 'Example Game',
+    description: 'A simple example game to demonstrate the integration process',
+    difficulty: 'Medium',
+    highScore: 0,
+    isAvailable: true,
+    thumbnail: '/Thumbnails/example-game.jpg',
+    category: 'Arcade',
+    estimatedPlayTime: '5-15 minutes',
+    isPopular: false,
+    isFeatured: false,
+    isRecent: true,
+    isBest: false,
+  },
 ];
 
 export const getGameById = (id: string): Game | undefined => {

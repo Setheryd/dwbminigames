@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "vitest"
+    "test": "vitest",
+    "add-game": "node scripts/add-game.js",
+    "integrate-github": "node scripts/integrate-github-game.js"
   },
   "dependencies": {
     "clsx": "^2.1.1",
