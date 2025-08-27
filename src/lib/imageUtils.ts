@@ -96,6 +96,7 @@ function _shuffleArray<T>(array: T[]): T[] {
 interface Game {
   id: string;
   title: string;
+  thumbnail?: string;
 }
 
 export function createOptimalLayout(games: Game[], maxItems: number = 24): LayoutRow[] {
@@ -137,8 +138,8 @@ export function createOptimalLayout(games: Game[], maxItems: number = 24): Layou
 
     if (!game) continue;
 
-    // First, get a random thumbnail to see what orientation we actually have
-    const thumbnail = getUniqueThumbnail();
+    // Determine the thumbnail to use, preferring the game's own if provided
+    const thumbnail = game.thumbnail || getUniqueThumbnail();
     const dimensions = getImageDimensionsFromPath(thumbnail);
 
     // Now determine if this orientation works with our current row
