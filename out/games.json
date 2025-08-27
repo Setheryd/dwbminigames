@@ -1,5 +1,29 @@
 [
   {
+    "id": "k-kluster-kasia",
+    "title": "Kasia",
+    "license": "ISC",
+    "sourceRepo": "https://github.com/K-Kluster/Kasia",
+    "type": "self-host",
+    "embedUrl": "/games/kasia/index.html"
+  },
+  {
+    "id": "steadforce-k8s-escape-room",
+    "title": "k8s escape room",
+    "license": "Apache-2.0",
+    "sourceRepo": "https://github.com/steadforce/k8s-escape-room",
+    "type": "self-host",
+    "embedUrl": "/games/k8s-escape-room/index.html"
+  },
+  {
+    "id": "postmanlabs-postman-sandbox",
+    "title": "postman sandbox",
+    "license": "Apache-2.0",
+    "sourceRepo": "https://github.com/postmanlabs/postman-sandbox",
+    "type": "self-host",
+    "embedUrl": "/games/postman-sandbox/index.html"
+  },
+  {
     "id": "notaphplover-one-game",
     "title": "one game",
     "license": "Unlicense",
@@ -174,29 +198,5 @@
     "sourceRepo": "https://github.com/WorldQL/dreamlab-engine",
     "type": "self-host",
     "embedUrl": "/games/dreamlab-engine/index.html"
-  },
-  {
-    "id": "megabyteceer-thing-editor",
-    "title": "thing editor",
-    "license": "MIT",
-    "sourceRepo": "https://github.com/Megabyteceer/thing-editor",
-    "type": "self-host",
-    "embedUrl": "/games/thing-editor/index.html"
-  },
-  {
-    "id": "matej-kotrba-musio",
-    "title": "musio",
-    "license": "Apache-2.0",
-    "sourceRepo": "https://github.com/matej-kotrba/musio",
-    "type": "self-host",
-    "embedUrl": "/games/musio/index.html"
-  },
-  {
-    "id": "bibliothecadao-eternum",
-    "title": "eternum",
-    "license": "MIT",
-    "sourceRepo": "https://github.com/BibliothecaDAO/eternum",
-    "type": "self-host",
-    "embedUrl": "/games/eternum/index.html"
   }
 ]

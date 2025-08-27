@@ -116,7 +116,7 @@ export default function GameGrid({ games, title, showLabels = false, maxItems = 
                   <div className={styles.gameGridMeta}>
                     <div className={styles.gameGridMetaContent}>
                       <Star className="w-3 h-3 text-yellow-400" />
-                      <span>{games.find(g => g.id === item.id)?.highScore.toLocaleString() || '0'}</span>
+                      <span>{games.find(g => g.id === item.id)?.highScore?.toLocaleString() || '0'}</span>
                       <span>•</span>
                       <Clock className="w-3 h-3" />
                       <span>{games.find(g => g.id === item.id)?.estimatedPlayTime || '5-15 min'}</span>
