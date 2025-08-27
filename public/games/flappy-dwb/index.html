@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Flappy DWB</title>
+<style>
+  html, body { margin:0; padding:0; height:100%; background:#000; display:flex; align-items:center; justify-content:center; }
+  canvas { background:#222; display:block; }
+</style>
+</head>
+<body>
+<canvas id="game" width="480" height="640"></canvas>
+<script>
+const canvas = document.getElementById('game');
+const ctx = canvas.getContext('2d');
+let y = canvas.height / 2; let velocity = 0; const gravity = 0.5;
+function loop() {
+  ctx.fillStyle = '#000';
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+  velocity += gravity;
+  y += velocity;
+  if (y > canvas.height - 20) { y = canvas.height - 20; velocity = -10; }
+  ctx.fillStyle = '#0f0';
+  ctx.fillRect(100, y, 40, 40);
+  requestAnimationFrame(loop);
+}
+loop();
+canvas.addEventListener('click', () => velocity = -8);
+</script>
+</body>
+</html>
