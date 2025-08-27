@@ -68,7 +68,7 @@ export const games: Game[] = [
     difficulty: 'Medium',
     highScore: 0,
     isAvailable: true,
-    thumbnail: '/Thumbnails/ABDUCXTION.jpg',
+    thumbnail: '/Thumbnails/ABDUCTION.jpg',
     category: 'Strategy',
     estimatedPlayTime: '8-20 minutes',
     isPopular: false,
